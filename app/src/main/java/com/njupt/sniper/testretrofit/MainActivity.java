@@ -2,28 +2,39 @@ package com.njupt.sniper.testretrofit;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.njupt.sniper.testretrofit.entity.Subject;
+import com.njupt.sniper.testretrofit.entity.StaticesEntity;
+import com.njupt.sniper.testretrofit.entity.Token;
 import com.njupt.sniper.testretrofit.http.HttpMethods;
 import com.njupt.sniper.testretrofit.subscribers.ProgressSubscriber;
 import com.njupt.sniper.testretrofit.subscribers.SubscriberOnNextListener;
-
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements SubscriberOnNextListener<List<Subject>> {
+public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.click_me_BN)
-    Button clickMeBN;
+
     @Bind(R.id.result_TV)
     TextView resultTV;
 
+    private String myToken;
 
+    SubscriberOnNextListener<Token> subscriberOnNextListener = new SubscriberOnNextListener<Token>() {
+        @Override
+        public void onNext(Token token) {
+            myToken=token.access_token;
+            resultTV.setText(token.access_token);
+        }
+    };
+    SubscriberOnNextListener<StaticesEntity> subscriberOnNextListener2 = new SubscriberOnNextListener<StaticesEntity>() {
+        @Override
+        public void onNext(StaticesEntity staticesEntity) {
+            resultTV.setText(staticesEntity.resume_rank.share_title);
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,18 +42,23 @@ public class MainActivity extends AppCompatActivity implements SubscriberOnNextL
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.click_me_BN)
+    @OnClick(R.id.get_token)
     public void onClick() {
-        getMovie();
+        getToken();
     }
 
-    //进行网络请求
-    private void getMovie() {
-        HttpMethods.getInstance().getTopMovie(new ProgressSubscriber(this, MainActivity.this), 0, 10);
+    @OnClick(R.id.get_statics)
+    public void onClick2() {
+        getStatics();
     }
 
-    @Override
-    public void onNext(List<Subject> subjects) {
-        resultTV.setText(subjects.toString());
+    //获取token
+    private void getToken() {
+        HttpMethods.getInstance().getToken(new ProgressSubscriber(subscriberOnNextListener, MainActivity.this));
+    }
+
+    //获取统计数据
+    private void getStatics() {
+        HttpMethods.getInstance().getStatics(new ProgressSubscriber(subscriberOnNextListener2, MainActivity.this),myToken);
     }
 }

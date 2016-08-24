@@ -1,8 +1,11 @@
 package com.njupt.sniper.testretrofit.http;
 
 
+import com.njupt.sniper.testretrofit.entity.GankBeautyResult;
 import com.njupt.sniper.testretrofit.entity.HttpResult;
+import com.njupt.sniper.testretrofit.entity.StaticesEntity;
 import com.njupt.sniper.testretrofit.entity.Subject;
+import com.njupt.sniper.testretrofit.entity.Token;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -24,26 +27,16 @@ import rx.schedulers.Schedulers;
 public class HttpMethods {
 
     public static final String BASE_URL = "https://api.douban.com/v2/movie/";
+    public static final String BASE_URL2 = "http://gank.io/api/";
+    public static final String BASE_URL3 = "http://192.168.1.6:9000/";
 
     private static final int DEFAULT_TIMEOUT = 5;
 
-    private Retrofit retrofit;
-    private MovieService movieService;
+
 
     //构造方法私有
     private HttpMethods() {
-        //手动创建一个OkHttpClient并设置超时时间
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
 
-        retrofit = new Retrofit.Builder()
-                .client(builder.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(BASE_URL)
-                .build();
-
-        movieService = retrofit.create(MovieService.class);
     }
 
     //在访问HttpMethods时创建单例
@@ -63,9 +56,72 @@ public class HttpMethods {
      * @param count 获取长度
      */
     public void getTopMovie(Subscriber<List<Subject>> subscriber, int start, int count){
+        //手动创建一个OkHttpClient并设置超时时间
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(builder.build())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .baseUrl(BASE_URL)
+                .build();
+
+         MovieService movieService = retrofit.create(MovieService.class);
 
         Observable observable = movieService.getTopMovie(start, count)
                 .map(new HttpResultFunc<List<Subject>>());
+
+        toSubscribe(observable, subscriber);
+    }
+
+    public void getData(Subscriber<GankBeautyResult> subscriber){
+        //手动创建一个OkHttpClient并设置超时时间
+        OkHttpClient httpClient = new OkHttpClient();
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(httpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .baseUrl(BASE_URL2)
+                .build();
+
+        MovieService movieService = retrofit.create(MovieService.class);
+
+        Observable observable = movieService.getBeauties(10, 1);
+
+        toSubscribe(observable, subscriber);
+    }
+
+    public void getToken(Subscriber<Token> subscriber){
+        //手动创建一个OkHttpClient并设置超时时间
+        OkHttpClient httpClient = new OkHttpClient();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(httpClient)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .baseUrl(BASE_URL3)
+                .build();
+
+        MovieService movieService = retrofit.create(MovieService.class);
+
+        Observable observable = movieService.getToken("stu-app","rSbnsVdrC3o3CjChXUXkPFBdi4qO8cZ8","13260875986","123456","password");
+
+        toSubscribe(observable, subscriber);
+    }
+
+    public void getStatics(Subscriber<StaticesEntity> subscriber, final String token){
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(new OkHttpClient())
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .baseUrl(BASE_URL3)
+                .build();
+
+        MovieService movieService = retrofit.create(MovieService.class);
+
+        Observable observable = movieService.getStatics("Bearer "+token);
 
         toSubscribe(observable, subscriber);
     }
