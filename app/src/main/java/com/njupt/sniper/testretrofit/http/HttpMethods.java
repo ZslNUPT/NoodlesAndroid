@@ -1,19 +1,11 @@
 package com.njupt.sniper.testretrofit.http;
 
 
-import com.njupt.sniper.testretrofit.entity.GankBeautyResult;
 import com.njupt.sniper.testretrofit.entity.HttpResult;
-import com.njupt.sniper.testretrofit.entity.StaticesEntity;
-import com.njupt.sniper.testretrofit.entity.Subject;
-import com.njupt.sniper.testretrofit.entity.Token;
+import com.njupt.sniper.testretrofit.entity.OAuthTokenEntity;
+import com.njupt.sniper.testretrofit.entity.StaticsEntity;
+import com.njupt.sniper.testretrofit.utils.AuthorityUtils;
 
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -26,17 +18,13 @@ import rx.schedulers.Schedulers;
  */
 public class HttpMethods {
 
-    public static final String BASE_URL = "https://api.douban.com/v2/movie/";
-    public static final String BASE_URL2 = "http://gank.io/api/";
-    public static final String BASE_URL3 = "http://192.168.1.6:9000/";
-
-    private static final int DEFAULT_TIMEOUT = 5;
-
-
+    private final String clientId = "stu-app";
+    private final String clientSecret = "rSbnsVdrC3o3CjChXUXkPFBdi4qO8cZ8";
+    private final String grantTypePassword = "password";
+    private final String grantTypeRefreshToken = "refresh_token";
 
     //构造方法私有
     private HttpMethods() {
-
     }
 
     //在访问HttpMethods时创建单例
@@ -49,82 +37,25 @@ public class HttpMethods {
         return SingletonHolder.INSTANCE;
     }
 
-    /**
-     * 用于获取豆瓣电影Top250的数据
-     * @param subscriber  由调用者传过来的观察者对象
-     * @param start 起始位置
-     * @param count 获取长度
-     */
-    public void getTopMovie(Subscriber<List<Subject>> subscriber, int start, int count){
-        //手动创建一个OkHttpClient并设置超时时间
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.connectTimeout(DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+    public void getTokenByPassword(Subscriber<OAuthTokenEntity> subscriber, String username, String password){
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .client(builder.build())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(BASE_URL)
-                .build();
+        OAuthService movieService = ServiceGenerator.createService(OAuthService.class);
 
-         MovieService movieService = retrofit.create(MovieService.class);
-
-        Observable observable = movieService.getTopMovie(start, count)
-                .map(new HttpResultFunc<List<Subject>>());
+        Observable observable = movieService.getTokenByPassword(clientId,clientSecret,username,password,grantTypePassword);
 
         toSubscribe(observable, subscriber);
     }
 
-    public void getData(Subscriber<GankBeautyResult> subscriber){
-        //手动创建一个OkHttpClient并设置超时时间
-        OkHttpClient httpClient = new OkHttpClient();
-        Retrofit retrofit = new Retrofit.Builder()
-                .client(httpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(BASE_URL2)
-                .build();
+    public void getStatics(Subscriber<StaticsEntity> subscriber){
 
-        MovieService movieService = retrofit.create(MovieService.class);
+        TestService testService =ServiceGenerator.createService(TestService.class, AuthorityUtils.getAuthToken().access_token);
 
-        Observable observable = movieService.getBeauties(10, 1);
+        Observable observable = testService.getStatics();
 
         toSubscribe(observable, subscriber);
     }
 
-    public void getToken(Subscriber<Token> subscriber){
-        //手动创建一个OkHttpClient并设置超时时间
-        OkHttpClient httpClient = new OkHttpClient();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .client(httpClient)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(BASE_URL3)
-                .build();
-
-        MovieService movieService = retrofit.create(MovieService.class);
-
-        Observable observable = movieService.getToken("stu-app","rSbnsVdrC3o3CjChXUXkPFBdi4qO8cZ8","13260875986","123456","password");
-
-        toSubscribe(observable, subscriber);
-    }
-
-    public void getStatics(Subscriber<StaticesEntity> subscriber, final String token){
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .client(new OkHttpClient())
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(BASE_URL3)
-                .build();
-
-        MovieService movieService = retrofit.create(MovieService.class);
-
-        Observable observable = movieService.getStatics("Bearer "+token);
-
-        toSubscribe(observable, subscriber);
-    }
 
     private <T> void toSubscribe(Observable<T> o, Subscriber<T> s){
          o.subscribeOn(Schedulers.io())
@@ -142,10 +73,10 @@ public class HttpMethods {
 
         @Override
         public T call(HttpResult<T> httpResult) {
-            if (httpResult.getCount() == 0) {
-                throw new ApiException(100);
+            if (httpResult.error !=null) {
+                throw new ApiException(httpResult.error,httpResult.error_description);
             }
-            return httpResult.getSubjects();
+            return httpResult.subject;
         }
     }
 

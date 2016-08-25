@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
@@ -31,4 +30,7 @@ dependencies {
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile files('libs/spring-data-rest-android-1.1.jar')
+    compile project(':mylibrary')
+
+
 }

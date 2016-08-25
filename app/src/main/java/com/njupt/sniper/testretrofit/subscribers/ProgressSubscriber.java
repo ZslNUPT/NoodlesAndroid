@@ -2,12 +2,14 @@ package com.njupt.sniper.testretrofit.subscribers;
 
 import android.content.Context;
 import android.widget.Toast;
+
 import com.njupt.sniper.testretrofit.progress.ProgressCancelListener;
 import com.njupt.sniper.testretrofit.progress.ProgressDialogHandler;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 
+import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 
 /**
@@ -74,10 +76,16 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
             Toast.makeText(context, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
         } else if (e instanceof ConnectException) {
             Toast.makeText(context, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
-        } else {
+        } else if(e instanceof HttpException){
+            Toast.makeText(context, "error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            if (mSubscriberOnNextListener != null) {
+                mSubscriberOnNextListener.onError(e.getMessage());
+            }
+        }else{
             Toast.makeText(context, "error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
         dismissProgressDialog();
+
 
     }
 
