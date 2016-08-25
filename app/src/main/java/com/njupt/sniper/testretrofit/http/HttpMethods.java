@@ -4,15 +4,18 @@ package com.njupt.sniper.testretrofit.http;
 import android.app.Activity;
 import android.content.Intent;
 
+import com.njupt.sniper.mylibrary.utils.ToastUtils;
 import com.njupt.sniper.testretrofit.activity.LoginActivity;
 import com.njupt.sniper.testretrofit.entity.HttpResult;
 import com.njupt.sniper.testretrofit.entity.OAuthTokenEntity;
 import com.njupt.sniper.testretrofit.entity.StaticsEntity;
 import com.njupt.sniper.testretrofit.utils.AuthorityUtils;
 
+import retrofit2.adapter.rxjava.HttpException;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -31,12 +34,17 @@ public class HttpMethods {
 
     //构造方法私有
     private HttpMethods(Activity activity) {
-        this.activity=activity;
+        this.activity = activity;
     }
 
     //获取单例
     public static HttpMethods getInstance(Activity activity) {
         return new HttpMethods(activity);
+    }
+
+    //获取单例
+    public static HttpMethods getInstance() {
+        return new HttpMethods(null);
     }
 
     public void getTokenByPassword(Subscriber<OAuthTokenEntity> subscriber, String username, String password) {
@@ -48,34 +56,18 @@ public class HttpMethods {
         toSubscribe(observable, subscriber);
     }
 
-    public void refreshOAuthToken(String refreshToken) {
+    public Observable<OAuthTokenEntity> refreshOAuthToken(String refreshToken) {
 
         OAuthService movieService = ServiceGenerator.createService(OAuthService.class);
 
-        Observable observable = movieService.getTokenByRefreshToken(clientId, clientSecret, grantTypePassword, refreshToken);
+        Observable<OAuthTokenEntity> observable = movieService.getTokenByRefreshToken(clientId, clientSecret, grantTypeRefreshToken, refreshToken);
 
-        Subscriber<OAuthTokenEntity> subscriber = new Subscriber<OAuthTokenEntity>() {
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                activity.startActivity(new Intent(activity, LoginActivity.class));
-            }
-
-            @Override
-            public void onNext(OAuthTokenEntity oAuthTokenEntity) {
-                AuthorityUtils.setAuthToken(oAuthTokenEntity);
-            }
-        };
-        toSubscribe(observable, subscriber);
+        return observable;
     }
 
     public void getStatics(Subscriber<StaticsEntity> subscriber) {
 
-        TestService testService = ServiceGenerator.createService(TestService.class, AuthorityUtils.getAuthToken().access_token);
+        TestService testService = ServiceGenerator.createService(TestService.class,false);
 
         Observable observable = testService.getStatics();
 
@@ -83,10 +75,45 @@ public class HttpMethods {
     }
 
 
-    private <T> void toSubscribe(Observable<T> o, Subscriber<T> s) {
+    private <T> void toSubscribe(final Observable<T> o, Subscriber<T> s) {
 
+        o.retryWhen(new Func1<Observable<? extends Throwable>, Observable<?>>() {
+            @Override
+            public Observable<?> call(Observable<? extends Throwable> observable) {
+                return observable.flatMap(new Func1<Throwable, Observable<?>>() {
+                    @Override
+                    public Observable<?> call(Throwable throwable) {
+                        if (throwable instanceof HttpException) {
 
-        o.subscribeOn(Schedulers.io())
+                            //请求token无效
+                            if (((HttpException) throwable).code() == 401) {
+                                return refreshOAuthToken(AuthorityUtils.getAuthToken().refresh_token).doOnNext(new Action1<OAuthTokenEntity>() {
+                                    @Override
+                                    public void call(OAuthTokenEntity oAuthTokenEntity) {
+                                        //refreshToken刷新成功
+                                        AuthorityUtils.setAuthToken(oAuthTokenEntity);
+                                    }
+                                }).doOnError(new Action1<Throwable>() {
+                                    @Override
+                                    public void call(Throwable throwable) {
+
+                                        //refreshToken无效,跳登录
+                                        if (((HttpException) throwable).code() == 400) {
+                                            activity.startActivity(new Intent(activity, LoginActivity.class));
+                                        }
+                                    }
+                                });
+                            }
+
+                            if (((HttpException) throwable).code() == 400) {
+                                ToastUtils.getInstance().showToast("账号密码错误");
+                            }
+                        }
+                        return Observable.error(throwable);
+                    }
+                });
+            }
+        }).subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s);

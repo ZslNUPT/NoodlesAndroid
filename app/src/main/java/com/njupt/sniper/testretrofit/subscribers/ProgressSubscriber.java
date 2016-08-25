@@ -1,6 +1,6 @@
 package com.njupt.sniper.testretrofit.subscribers;
 
-import android.app.Activity;
+import android.content.Context;
 import android.widget.Toast;
 
 import com.njupt.sniper.testretrofit.progress.ProgressCancelListener;
@@ -22,12 +22,12 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
     private SubscriberOnNextListener mSubscriberOnNextListener;
     private ProgressDialogHandler mProgressDialogHandler;
 
-    private Activity activity;
+    private Context context;
 
-    public ProgressSubscriber(SubscriberOnNextListener mSubscriberOnNextListener, Activity activity) {
+    public ProgressSubscriber(SubscriberOnNextListener mSubscriberOnNextListener, Context context) {
         this.mSubscriberOnNextListener = mSubscriberOnNextListener;
-        this.activity = activity;
-        mProgressDialogHandler = new ProgressDialogHandler(activity, this, true);
+        this.context = context;
+        mProgressDialogHandler = new ProgressDialogHandler(context, this, true);
     }
 
     private void showProgressDialog(){
@@ -58,7 +58,7 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
     @Override
     public void onCompleted() {
         dismissProgressDialog();
-        Toast.makeText(activity, "Get Data Completed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Get Data Completed", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -69,7 +69,7 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
     @Override
     public void onError(Throwable e) {
         if (mSubscriberOnNextListener != null) {
-            mSubscriberOnNextListener.onError(e,activity);
+            mSubscriberOnNextListener.onError(e);
         }
         dismissProgressDialog();
     }

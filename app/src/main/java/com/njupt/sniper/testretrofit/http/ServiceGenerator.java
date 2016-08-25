@@ -1,5 +1,7 @@
 package com.njupt.sniper.testretrofit.http;
 
+import com.njupt.sniper.testretrofit.utils.AuthorityUtils;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -27,19 +29,20 @@ public class ServiceGenerator {
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create());
 
     public static <S> S createService(Class<S> serviceClass) {
-        return createService(serviceClass, null);
+        return createService(serviceClass, true);
     }
 
-    public static <S> S createService(Class<S> serviceClass, final String authToken) {
-        if (authToken != null) {
+    public static <S> S createService(Class<S> serviceClass, boolean isLogin) {
+
+        if (isLogin) {
             httpClient.addInterceptor(new Interceptor() {
                 @Override
                 public Response intercept(Interceptor.Chain chain) throws IOException {
+
                     Request original = chain.request();
 
-                    // Request customization: add request headers
                     Request.Builder requestBuilder = original.newBuilder()
-                            .header("Authorization", "Bearer "+authToken)
+                            .header("Authorization", "Bearer " + AuthorityUtils.getAuthToken().access_token)
                             .method(original.method(), original.body());
 
                     Request request = requestBuilder.build();
@@ -49,6 +52,7 @@ public class ServiceGenerator {
         }
 
         OkHttpClient client = httpClient.build();
+
         Retrofit retrofit = builder.client(client).build();
         return retrofit.create(serviceClass);
     }
