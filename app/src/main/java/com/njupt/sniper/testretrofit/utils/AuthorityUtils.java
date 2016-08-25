@@ -30,11 +30,11 @@ public class AuthorityUtils {
         setIsLogin(false);
     }
 
-    private static void setIsLogin(boolean isLogin) {
+    public static void setIsLogin(boolean isLogin) {
         PrefUtils.putBoolean(getContext(), "isLogin", isLogin);
     }
 
-    private static boolean getIsLogin() {
+    public static boolean getIsLogin() {
         return PrefUtils.getBoolean(getContext(), "isLogin", false);
     }
 
@@ -43,7 +43,8 @@ public class AuthorityUtils {
     }
 
     public static OAuthTokenEntity getAuthToken() {
-        return (OAuthTokenEntity) PrefUtils.getObject(getContext(), "oauthToken");
+        OAuthTokenEntity authTokenEntity = (OAuthTokenEntity) PrefUtils.getObject(getContext(), "oauthToken");
+        return  authTokenEntity==null?new OAuthTokenEntity():authTokenEntity;
     }
 
 }

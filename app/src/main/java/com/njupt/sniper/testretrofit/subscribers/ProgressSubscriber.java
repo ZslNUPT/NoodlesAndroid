@@ -1,15 +1,11 @@
 package com.njupt.sniper.testretrofit.subscribers;
 
-import android.content.Context;
+import android.app.Activity;
 import android.widget.Toast;
 
 import com.njupt.sniper.testretrofit.progress.ProgressCancelListener;
 import com.njupt.sniper.testretrofit.progress.ProgressDialogHandler;
 
-import java.net.ConnectException;
-import java.net.SocketTimeoutException;
-
-import retrofit2.adapter.rxjava.HttpException;
 import rx.Subscriber;
 
 /**
@@ -26,12 +22,12 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
     private SubscriberOnNextListener mSubscriberOnNextListener;
     private ProgressDialogHandler mProgressDialogHandler;
 
-    private Context context;
+    private Activity activity;
 
-    public ProgressSubscriber(SubscriberOnNextListener mSubscriberOnNextListener, Context context) {
+    public ProgressSubscriber(SubscriberOnNextListener mSubscriberOnNextListener, Activity activity) {
         this.mSubscriberOnNextListener = mSubscriberOnNextListener;
-        this.context = context;
-        mProgressDialogHandler = new ProgressDialogHandler(context, this, true);
+        this.activity = activity;
+        mProgressDialogHandler = new ProgressDialogHandler(activity, this, true);
     }
 
     private void showProgressDialog(){
@@ -62,7 +58,7 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
     @Override
     public void onCompleted() {
         dismissProgressDialog();
-        Toast.makeText(context, "Get Data Completed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(activity, "Get Data Completed", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -72,21 +68,10 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
      */
     @Override
     public void onError(Throwable e) {
-        if (e instanceof SocketTimeoutException) {
-            Toast.makeText(context, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
-        } else if (e instanceof ConnectException) {
-            Toast.makeText(context, "网络中断，请检查您的网络状态", Toast.LENGTH_SHORT).show();
-        } else if(e instanceof HttpException){
-            Toast.makeText(context, "error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
-            if (mSubscriberOnNextListener != null) {
-                mSubscriberOnNextListener.onError(e.getMessage());
-            }
-        }else{
-            Toast.makeText(context, "error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
+        if (mSubscriberOnNextListener != null) {
+            mSubscriberOnNextListener.onError(e,activity);
         }
         dismissProgressDialog();
-
-
     }
 
     /**

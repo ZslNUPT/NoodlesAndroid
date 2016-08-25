@@ -12,4 +12,7 @@ public class OAuthTokenEntity implements Serializable{
     public String refresh_token;
     public String expires_in;
     public String scope;
+
+    public OAuthTokenEntity() {
+    }
 }
