@@ -1,4 +1,4 @@
-package com.njupt.sniper.testretrofit.http;
+package com.njupt.sniper.testretrofit.http.service;
 
 import com.njupt.sniper.testretrofit.entity.StaticsEntity;
 
@@ -9,7 +9,7 @@ import rx.Observable;
  * author：Zsl
  * date：2016/8/25
  */
-public interface TestService {
+public interface NavigationService {
     @GET("api/homes/statistics")
     Observable<StaticsEntity> getStatics();
 }

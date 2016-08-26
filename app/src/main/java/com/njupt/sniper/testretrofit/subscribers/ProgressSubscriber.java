@@ -1,7 +1,6 @@
 package com.njupt.sniper.testretrofit.subscribers;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import com.njupt.sniper.testretrofit.progress.ProgressCancelListener;
 import com.njupt.sniper.testretrofit.progress.ProgressDialogHandler;
@@ -58,7 +57,6 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
     @Override
     public void onCompleted() {
         dismissProgressDialog();
-        Toast.makeText(context, "Get Data Completed", Toast.LENGTH_SHORT).show();
     }
 
     /**

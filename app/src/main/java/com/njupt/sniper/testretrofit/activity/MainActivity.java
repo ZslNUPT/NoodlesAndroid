@@ -4,7 +4,7 @@ import android.widget.TextView;
 
 import com.njupt.sniper.testretrofit.R;
 import com.njupt.sniper.testretrofit.entity.StaticsEntity;
-import com.njupt.sniper.testretrofit.http.HttpMethods;
+import com.njupt.sniper.testretrofit.http.NavigationHttpMethods;
 import com.njupt.sniper.testretrofit.subscribers.ProgressSubscriber;
 import com.njupt.sniper.testretrofit.subscribers.SimpleSubscriberOnNextListener;
 
@@ -31,7 +31,7 @@ public class MainActivity extends BasicActivity {
     //获取统计数据
     @OnClick(R.id.get_statics)
     public void getStatics() {
-        HttpMethods.getInstance(this).getStatics(new ProgressSubscriber(subscriberOnNextListener, MainActivity.this));
+        new NavigationHttpMethods(this).getStatics(new ProgressSubscriber(subscriberOnNextListener,this));
     }
 
 }

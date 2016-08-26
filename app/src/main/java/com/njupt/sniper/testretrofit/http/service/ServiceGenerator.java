@@ -1,4 +1,4 @@
-package com.njupt.sniper.testretrofit.http;
+package com.njupt.sniper.testretrofit.http.service;
 
 import com.njupt.sniper.testretrofit.utils.AuthorityUtils;
 

@@ -4,11 +4,9 @@ import android.app.Application;
 
 import com.njupt.sniper.mylibrary.utils.ToastUtils;
 
-
 /**
- * Created by _SOLID
- * Date:2016/5/16
- * Time:11:46
+ * author：Zsl
+ * date：2016/8/25
  */
 public class MyApplication extends Application {
     private static MyApplication mInstance;

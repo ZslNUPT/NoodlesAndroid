@@ -4,7 +4,7 @@ import android.widget.EditText;
 
 import com.njupt.sniper.testretrofit.R;
 import com.njupt.sniper.testretrofit.entity.OAuthTokenEntity;
-import com.njupt.sniper.testretrofit.http.HttpMethods;
+import com.njupt.sniper.testretrofit.http.BaseHttpMethods;
 import com.njupt.sniper.testretrofit.subscribers.ProgressSubscriber;
 import com.njupt.sniper.testretrofit.subscribers.SimpleSubscriberOnNextListener;
 import com.njupt.sniper.testretrofit.utils.AuthorityUtils;
@@ -40,7 +40,7 @@ public class LoginActivity extends BasicActivity {
 
     @OnClick(R.id.to_login)
     void login(){
-        HttpMethods.getInstance(this).getTokenByPassword(new ProgressSubscriber(subscriberOnNextListener,this),userName.getText().toString(),password.getText().toString());
+        new BaseHttpMethods(this).getTokenByPassword(new ProgressSubscriber(subscriberOnNextListener,this),userName.getText().toString(),password.getText().toString());
     }
 
 }
