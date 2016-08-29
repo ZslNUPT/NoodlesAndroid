@@ -61,8 +61,7 @@ public class BaseHttpMethods {
 
     public <T> void toSubscribe(final Observable<T> o, Subscriber<T> s) {
 
-        o  //设置请求次数
-                .retry(new Func2<Integer, Throwable, Boolean>() {
+        o.retry(new Func2<Integer, Throwable, Boolean>() {//设置请求次数
                     @Override
                     public Boolean call(Integer integer, Throwable throwable) {
                         if (throwable instanceof SocketTimeoutException && integer < 2)
@@ -88,7 +87,6 @@ public class BaseHttpMethods {
                                 }).doOnError(new Action1<Throwable>() {
                                     @Override
                                     public void call(Throwable throwable) {
-
                                         //refreshToken无效,跳登录
                                         if (((HttpException) throwable).code() == 400) {
                                             activity.startActivity(new Intent(activity, LoginActivity.class));

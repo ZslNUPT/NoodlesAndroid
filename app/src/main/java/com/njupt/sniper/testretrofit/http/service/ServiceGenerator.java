@@ -18,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ServiceGenerator {
 
-    public static final String API_BASE_URL = "http://192.168.1.6:9000/";
+    public static final String API_BASE_URL = "http://192.168.1.7:8307/";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
@@ -29,12 +29,12 @@ public class ServiceGenerator {
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create());
 
     public static <S> S createService(Class<S> serviceClass) {
-        return createService(serviceClass, true);
+        return createService(serviceClass, false);
     }
 
-    public static <S> S createService(Class<S> serviceClass, boolean isLogin) {
+    public static <S> S createService(Class<S> serviceClass, boolean needOAuth) {
 
-        if (isLogin) {
+        if (needOAuth) {
             httpClient.addInterceptor(new Interceptor() {
                 @Override
                 public Response intercept(Interceptor.Chain chain) throws IOException {

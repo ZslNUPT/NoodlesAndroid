@@ -21,7 +21,7 @@ public class NavigationHttpMethods extends BaseHttpMethods {
 
     public void getStatics(Subscriber<StaticsEntity> subscriber) {
 
-        NavigationService navigationService = ServiceGenerator.createService(NavigationService.class, false);
+        NavigationService navigationService = ServiceGenerator.createService(NavigationService.class, true);
 
         Observable observable = navigationService.getStatics();
 
