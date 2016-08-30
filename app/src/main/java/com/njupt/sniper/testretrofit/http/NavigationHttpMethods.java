@@ -2,13 +2,13 @@ package com.njupt.sniper.testretrofit.http;
 
 import android.app.Activity;
 
+import com.njupt.sniper.testretrofit.entity.AudioEntity;
 import com.njupt.sniper.testretrofit.entity.StaticsEntity;
 import com.njupt.sniper.testretrofit.http.service.NavigationService;
 import com.njupt.sniper.testretrofit.http.service.ServiceGenerator;
 
-import org.springframework.hateoas.Resources;
+import java.util.List;
 
-import rx.Observable;
 import rx.Subscriber;
 
 /**
@@ -20,21 +20,22 @@ public class NavigationHttpMethods extends BaseHttpMethods {
 
     public NavigationHttpMethods(Activity activity) {
         super(activity);
-        navigationService = ServiceGenerator.createService(NavigationService.class, true);
+        navigationService = ServiceGenerator.createService(NavigationService.class);
     }
 
     public void getStatics(Subscriber<StaticsEntity> subscriber) {
 
-        Observable observable = navigationService.getStatics();
-
-        toSubscribe(observable, subscriber);
+        toSubscribe(navigationService.getStatics(), subscriber);
     }
 
-    public void getAudios(Subscriber<Resources<StaticsEntity>> subscriber) {
+    public void getAudios(Subscriber<List<AudioEntity>> subscriber) {
 
-        Observable observable = navigationService.getAudios();
+        toSubscribe(resourcesMapToList(navigationService.getAudios()), subscriber);
+    }
 
-        toSubscribe(observable, subscriber);
+    public void getPagedAudioList(Subscriber<List<AudioEntity>> subscriber) {
+
+        toSubscribe(pagedResourcesMapToList(navigationService.getPagedAudioList(0, 10)), subscriber);
     }
 
 }

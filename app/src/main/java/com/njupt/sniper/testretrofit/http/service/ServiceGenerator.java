@@ -30,7 +30,7 @@ public class ServiceGenerator {
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create());
 
     public static <S> S createService(Class<S> serviceClass) {
-        return createService(serviceClass, false);
+        return createService(serviceClass, true);
     }
 
     public static <S> S createService(Class<S> serviceClass, boolean needOAuth) {
