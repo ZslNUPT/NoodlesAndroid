@@ -33,7 +33,7 @@ public class BaseHttpMethods {
     private final String grantTypePassword = "password";
     private final String grantTypeRefreshToken = "refresh_token";
 
-    private Activity activity;;
+    private Activity activity;
 
     //构造方法私有
     public BaseHttpMethods(Activity activity) {

@@ -1,57 +1,37 @@
 package com.njupt.sniper.testretrofit.entity;
 
-import java.io.Serializable;
-
 /**
  * author：Zsl
  * date：2016/7/5
  */
-public class AudioEntity implements Serializable {
-    private int id;
-    private String name;
-    private String shareUrl;
-    private String audioUrl;
+public class AudioEntity extends BaseIdName {
+    private String share_url;
+    private String audio_url;
     private String title;
     private String content;
-    private int audioTime;
+    private int audio_time;
     private String img;
-    private String smallImg;
+    private String small_img;
     private String description;
-    private int viewTimes;
+    private int view_times;
 
-    private AudioEntity lastAudio;
-    private AudioEntity nextAudio;
+    private AudioEntity last_audio;
+    private AudioEntity next_audio;
 
-    public int getId() {
-        return id;
+    public String getShare_url() {
+        return share_url;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setShare_url(String share_url) {
+        this.share_url = share_url;
     }
 
-    public String getName() {
-        return name;
+    public String getAudio_url() {
+        return audio_url;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getShareUrl() {
-        return shareUrl;
-    }
-
-    public void setShareUrl(String shareUrl) {
-        this.shareUrl = shareUrl;
-    }
-
-    public String getAudioUrl() {
-        return audioUrl;
-    }
-
-    public void setAudioUrl(String audioUrl) {
-        this.audioUrl = audioUrl;
+    public void setAudio_url(String audio_url) {
+        this.audio_url = audio_url;
     }
 
     public String getTitle() {
@@ -70,12 +50,12 @@ public class AudioEntity implements Serializable {
         this.content = content;
     }
 
-    public int getAudioTime() {
-        return audioTime;
+    public int getAudio_time() {
+        return audio_time;
     }
 
-    public void setAudioTime(int audioTime) {
-        this.audioTime = audioTime;
+    public void setAudio_time(int audio_time) {
+        this.audio_time = audio_time;
     }
 
     public String getImg() {
@@ -86,12 +66,12 @@ public class AudioEntity implements Serializable {
         this.img = img;
     }
 
-    public String getSmallImg() {
-        return smallImg;
+    public String getSmall_img() {
+        return small_img;
     }
 
-    public void setSmallImg(String smallImg) {
-        this.smallImg = smallImg;
+    public void setSmall_img(String small_img) {
+        this.small_img = small_img;
     }
 
     public String getDescription() {
@@ -102,29 +82,27 @@ public class AudioEntity implements Serializable {
         this.description = description;
     }
 
-    public int getViewTimes() {
-        return viewTimes;
+    public int getView_times() {
+        return view_times;
     }
 
-    public void setViewTimes(int viewTimes) {
-        this.viewTimes = viewTimes;
+    public void setView_times(int view_times) {
+        this.view_times = view_times;
     }
 
-    public AudioEntity getLastAudio() {
-        return lastAudio;
+    public AudioEntity getLast_audio() {
+        return last_audio;
     }
 
-    public void setLastAudio(AudioEntity lastAudio) {
-        this.lastAudio = lastAudio;
+    public void setLast_audio(AudioEntity last_audio) {
+        this.last_audio = last_audio;
     }
 
-    public AudioEntity getNextAudio() {
-        return nextAudio;
+    public AudioEntity getNext_audio() {
+        return next_audio;
     }
 
-    public void setNextAudio(AudioEntity nextAudio) {
-        this.nextAudio = nextAudio;
+    public void setNext_audio(AudioEntity next_audio) {
+        this.next_audio = next_audio;
     }
-
-
 }

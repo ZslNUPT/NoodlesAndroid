@@ -1,5 +1,6 @@
 package com.njupt.sniper.testretrofit.http.service;
 
+import com.njupt.sniper.testretrofit.http.ObjectMapperBuilder;
 import com.njupt.sniper.testretrofit.utils.AuthorityUtils;
 
 import java.io.IOException;
@@ -10,7 +11,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.jackson.JacksonConverterFactory;
 
 /**
  * author：Zsl
@@ -25,7 +26,7 @@ public class ServiceGenerator {
     private static Retrofit.Builder builder =
             new Retrofit.Builder()
                     .baseUrl(API_BASE_URL)
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(JacksonConverterFactory.create(ObjectMapperBuilder.build()))
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create());
 
     public static <S> S createService(Class<S> serviceClass) {
@@ -54,6 +55,7 @@ public class ServiceGenerator {
         OkHttpClient client = httpClient.build();
 
         Retrofit retrofit = builder.client(client).build();
+
         return retrofit.create(serviceClass);
     }
 
