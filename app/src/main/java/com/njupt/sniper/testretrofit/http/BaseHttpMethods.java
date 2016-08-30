@@ -11,7 +11,11 @@ import com.njupt.sniper.testretrofit.http.service.OAuthService;
 import com.njupt.sniper.testretrofit.http.service.ServiceGenerator;
 import com.njupt.sniper.testretrofit.utils.AuthorityUtils;
 
+import org.springframework.hateoas.PagedResources;
+import org.springframework.hateoas.Resources;
+
 import java.net.SocketTimeoutException;
+import java.util.List;
 
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Observable;
@@ -33,7 +37,7 @@ public class BaseHttpMethods {
     private final String grantTypePassword = "password";
     private final String grantTypeRefreshToken = "refresh_token";
 
-    private Activity activity;;
+    private Activity activity;
 
     //构造方法私有
     public BaseHttpMethods(Activity activity) {
@@ -42,7 +46,7 @@ public class BaseHttpMethods {
 
     public void getTokenByPassword(Subscriber<OAuthTokenEntity> subscriber, String username, String password) {
 
-        OAuthService movieService = ServiceGenerator.createService(OAuthService.class);
+        OAuthService movieService = ServiceGenerator.createService(OAuthService.class,false);
 
         Observable observable = movieService.getTokenByPassword(clientId, clientSecret, username, password, grantTypePassword);
 
@@ -51,13 +55,30 @@ public class BaseHttpMethods {
 
     public Observable<OAuthTokenEntity> refreshOAuthToken(String refreshToken) {
 
-        OAuthService movieService = ServiceGenerator.createService(OAuthService.class);
+        OAuthService movieService = ServiceGenerator.createService(OAuthService.class,false);
 
         Observable<OAuthTokenEntity> observable = movieService.getTokenByRefreshToken(clientId, clientSecret, grantTypeRefreshToken, refreshToken);
 
         return observable;
     }
 
+    public <T> Observable<List<T>> pagedResourcesMapToList(Observable<PagedResources<T>> observable){
+       return observable.map(new Func1<PagedResources<T>, List<T>>() {
+            @Override
+            public List<T> call(PagedResources<T> staticsEntities) {
+                return staticsEntities.getData();
+            }
+        });
+    }
+
+    public <T> Observable<List<T>> resourcesMapToList(Observable<Resources<T>> observable){
+        return observable.map(new Func1<Resources<T>, List<T>>() {
+            @Override
+            public List<T> call(Resources<T> staticsEntities) {
+                return staticsEntities.getData();
+            }
+        });
+    }
 
     public <T> void toSubscribe(final Observable<T> o, Subscriber<T> s) {
 
