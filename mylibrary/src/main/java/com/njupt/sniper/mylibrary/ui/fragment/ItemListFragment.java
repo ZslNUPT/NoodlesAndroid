@@ -3,13 +3,13 @@ package com.njupt.sniper.mylibrary.ui.fragment;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,7 +25,7 @@ import java.util.List;
  * @author chenshenglong
  * @date 16-8-29
  */
-public abstract class ItemListFragment<E, S extends RecyclerView.Adapter> extends ApplicationFragment implements LoaderManager.LoaderCallbacks<List<E>> {
+public abstract class ItemListFragment<E, S extends RecyclerView.Adapter> extends Fragment implements LoaderManager.LoaderCallbacks<List<E>> {
 
     protected List<E> items = Collections.emptyList();
 

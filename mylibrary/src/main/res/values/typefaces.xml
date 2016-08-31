@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--icon font res-->
+<resources>
+
+    <string name="text_icon_arrow_right">&#xe607;</string>
+
+    <!--left drawer-->
+    <string name="left_drawer_icon_message">&#xe600;</string>
+    <string name="left_drawer_icon_resume">&#xe602;</string>
+    <string name="left_drawer_icon_test_record">&#xe603;</string>
+    <string name="left_drawer_icon_setting">&#xe601;</string>
+
+    <!--resume-->
+    <string name="resume_icon_female">&#xe614;</string>
+    <string name="resume_icon_male">&#xe615;</string>
+    <string name="resume_icon_edit">&#xe618;</string>
+    <string name="resume_icon_new_edit">&#xe62d;</string>
+    <string name="resume_icon_location">&#xe60f;</string>
+    <string name="resume_icon_phone">&#xe616;</string>
+    <string name="resume_icon_email">&#xe612;</string>
+    <string name="resume_icon_add">&#xe611;</string>
+    <string name="resume_icon_back">&#xe606;</string>
+
+    <!--recruitment-->
+    <string name="recruitment_icon_lock">&#xe606;</string>
+    <string name="recruitment_icon_tab">&#xe607;</string>
+    <string name="recruitment_icon_browse">&#xe60a;</string>
+    <string name="recruitment_icon_place">&#xe60f;</string>
+    <string name="recruitment_icon_time">&#xe609;</string>
+
+    <!--recruitment info-->
+    <string name="recruitment_info_icon_lock">&#xe606;</string>
+    <string name="recruitment_info_icon_tab">&#xe607;</string>
+    <string name="recruitment_info_icon_browse">&#xe60a;</string>
+    <string name="recruitment_info_icon_place">&#xe65e;</string>
+    <string name="recruitment_info_icon_job">&#xe659;</string>
+    <string name="recruitment_info_icon_surplus_days">&#xe64d;</string>
+    <string name="recruitment_info_icon_time">&#xe65d;</string>
+    <string name="recruitment_info_icon_eye">&#xe64e;</string>
+
+    <!--internship info-->
+    <string name="internship_info_icon_browse">&#xe60a;</string>
+    <string name="internship_info_icon_field">&#xe678;</string>
+    <string name="internship_info_icon_edit">&#xe66d;</string>
+
+    <!--action bar custom view-->
+    <string name="home_arrow_down">&#xe605;</string>
+
+    <!--paper pager activity-->
+    <string name="paper_pager_icon_counter">&#xe609;</string>
+    <string name="paper_pager_answer_sheet">&#xe603;</string>
+    <string name="paper_pager_title_icon">&#xe60d;</string>
+
+    <!--answer sheet popup window-->
+    <string name="answer_sheet_popup_icon_close">&#xe60d;</string>
+
+    <!--register activity-->
+    <string name="register_icon_unlocking_key">&#xe61c;</string>
+    <string name="register_icon_phone">&#xe616;</string>
+
+    <!--fragment code-->
+    <string name="fragment_code_resume_icon">&#xe63e;</string>
+    <string name="fragment_code_join_exam_icon">&#xe641;</string>
+    <string name="fragment_code_offer_icon">&#xe640;</string>
+
+    <!-- new resume-->
+    <string name="icon_avatar">&#xe60c;</string>
+
+    <!-- career talk info-->
+    <string name="iconFont_flag">&#xe647;</string>
+    <string name="iconFont_time">&#xe610;</string>
+    <string name="iconFont_location">&#xe60f;</string>
+    <string name="iconFont_watch">&#xe64e;</string>
+
+    <!-- navigation -->
+    <string name="icon_field">&#xe647;</string>
+    <string name="icon_browse">&#xe60a;</string>
+    <!--delivery resume-->
+    <string name="ic_delivery">&#xe679;</string>
+
+    <!--NewHomeActivity's tab icons-->
+    <string-array name="icon_home_tabs">
+        <item>&#xe681;</item>
+        <item>&#xe67f;</item>
+        <item>&#xe680;</item>
+        <item>&#xe682;</item>
+    </string-array>
+
+
+    <string name="toolbar_search">&#xe691;</string>
+    <string name="search_history">&#xe690;</string>
+
+    <string name="delivery_tag">&#xe678;</string>
+    <string name="delivery_self">&#xe674;</string>
+    <string name="delivery_average">&#xe675;</string>
+    <string name="delivery_list">&#xe67a;</string>
+
+    <string name="college_checked">&#xe65f;</string>
+
+    <!-- tv  -->
+    <string name="icon_favour">&#xe69f;</string>
+    <string name="icon_share">&#xe68b;</string>
+
+    <!--新版登录-->
+    <!-- 闭眼 -->
+    <string name="icon_password_hide">&#xe6a2;</string>
+    <!-- 睁眼 -->
+    <string name="icon_password_show">&#xe6a3;</string>
+    <!-- 一个叉叉 -->
+    <string name="icon_login_close">&#xe676;</string>
+
+    <!--音频相关-->
+    <!--上一条-->
+    <string name="icon_last_audio">&#xe6a6;</string>
+    <!--下一条-->
+    <string name="icon_next_audio">&#xe6a7;</string>
+    <!--暂停-->
+    <string name="icon_pause_audio">&#xe6ab;</string>
+    <!--播放-->
+    <string name="icon_play_audio">&#xe6ac;</string>
+    <!--播放2-->
+    <string name="icon_play_audio_2">&#xe6a0;</string>
+    <!--音乐图标-->
+    <string name="icon_music">&#xe6ad;</string>
+    <!--音乐图标2-->
+    <string name="icon_music2">&#xe6b2;</string>
+    <!--左箭头-->
+    <string name="icon_left_arrow">&#xe6b1;</string>
+    <!--光盘状播放标志-->
+    <string name="icon_tag_play">&#xe6a8;</string>
+    <!--音乐播放的耳机标志-->
+    <string name="icon_headset">&#xe6b3;</string>
+
+
+    <!--实习地点标志-->
+    <string name="icon_internship_address">&#xe685;</string>
+
+
+
+</resources>
