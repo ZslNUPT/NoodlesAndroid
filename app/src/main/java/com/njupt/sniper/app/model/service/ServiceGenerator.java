@@ -19,7 +19,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
  */
 public class ServiceGenerator {
 
-    public static final String API_BASE_URL = "http://192.168.1.7:8307/";
+    public static final String API_BASE_URL = "http://192.168.1.7:8315/";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 

@@ -19,4 +19,11 @@ public abstract class BasicActivity extends AppCompatActivity {
     }
 
     public abstract int getLayoutId();
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
+    }
+
 }

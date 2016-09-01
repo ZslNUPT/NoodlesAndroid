@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TabHost;
+
 import com.njupt.sniper.mylibrary.R;
 import com.njupt.sniper.mylibrary.ui.activity.BasicActivity;
 
@@ -29,10 +30,15 @@ public abstract class BottomTabActivity extends BasicActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        getSupportActionBar().hide();
+
         //底部导航栏
         initTabs();
 
     }
+
+
+
 
     @Override
     public int getLayoutId() {
