@@ -3,8 +3,8 @@ package com.njupt.sniper.app.ui.fragment;
 import android.os.Bundle;
 import android.support.v4.content.Loader;
 
-import com.njupt.sniper.app.ui.adapter.AudioAdapter;
 import com.njupt.sniper.app.model.entity.AudioEntity;
+import com.njupt.sniper.app.ui.adapter.AudioAdapter;
 import com.njupt.sniper.mylibrary.ui.fragment.ItemListFragment;
 
 import java.util.List;
@@ -22,6 +22,7 @@ public class TestFragment extends ItemListFragment<AudioEntity, AudioAdapter> {
 
     @Override
     public Loader<List<AudioEntity>> onCreateLoader(int id, Bundle args) {
+
         return null;
     }
 

@@ -22,4 +22,5 @@ public abstract class BasicFragment extends Fragment {
     }
 
     protected abstract int  getLayoutId();
+
 }

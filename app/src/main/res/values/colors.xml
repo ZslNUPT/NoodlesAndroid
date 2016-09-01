@@ -17,6 +17,7 @@
 
     <!-- 常用黑白色（灰色） -->
     <!-- 透明色 -->
+    <color name="translucent02">#97000000</color>
     <color name="transparent">#00000000</color>
     <color name="normal_white">#ffffff</color>
     <color name="grey01">#f8ffff</color>

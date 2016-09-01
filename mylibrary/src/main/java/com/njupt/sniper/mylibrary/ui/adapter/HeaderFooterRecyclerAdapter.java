@@ -10,14 +10,17 @@ import java.util.List;
  * @author chenshenglong
  * @date 16-8-30
  */
-public abstract class HeaderFooterRecyclerAdapter<S extends Object> extends RecyclerView.Adapter {
+public abstract class HeaderFooterRecyclerAdapter<E extends Object, S extends RecyclerView.Adapter> extends RecyclerView.Adapter {
 
     //数据集合
-    private List<S> mDatas;
+    private List<E> mDatas;
 
     private View mHeaderView;
 
     private View mFooterView;
+
+    private final S wrapped;
+
 
     //没有footer 和 header
     public final static int TYPE_NORMAL = 0;
@@ -26,11 +29,11 @@ public abstract class HeaderFooterRecyclerAdapter<S extends Object> extends Recy
 
     public final static int TYPE_FOOTER = 2;
 
-    protected abstract RecyclerView.ViewHolder getRecyclerViewHolder(View view);
+    protected abstract RecyclerView.ViewHolder initRecyclerViewHolder(View itemView, int viewType);
 
-    protected abstract View getItemLayout();
+    protected abstract View getItemLayout(ViewGroup parent);
 
-    protected abstract void setDataToView(RecyclerView.ViewHolder hold, List<S> datas);
+    protected abstract void setDataToView(RecyclerView.ViewHolder viewHolder, List<E> datas, int position);
 
     public View getmHeaderView() {
         return mHeaderView;
@@ -38,7 +41,7 @@ public abstract class HeaderFooterRecyclerAdapter<S extends Object> extends Recy
 
     public void setmHeaderView(View mHeaderView) {
         this.mHeaderView = mHeaderView;
-        notifyItemInserted(0);
+        wrapped.notifyItemInserted(0);
     }
 
     public View getmFooterView() {
@@ -47,24 +50,25 @@ public abstract class HeaderFooterRecyclerAdapter<S extends Object> extends Recy
 
     public void setmFooterView(View mFooterView) {
         this.mFooterView = mFooterView;
-        notifyItemInserted(getItemCount() - 1);
+        wrapped.notifyItemInserted(getItemCount() - 1);
     }
 
-    public HeaderFooterRecyclerAdapter(List<S> mDatas) {
+    public HeaderFooterRecyclerAdapter(List<E> mDatas, S adapter) {
         this.mDatas = mDatas;
+        this.wrapped = adapter;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         if (mHeaderView != null && viewType == TYPE_HEADER) {
-            return getRecyclerViewHolder(mHeaderView);
+            return initRecyclerViewHolder(mHeaderView, viewType);
         }
 
         if (mFooterView != null && viewType == TYPE_FOOTER) {
-            return getRecyclerViewHolder(mFooterView);
+            return initRecyclerViewHolder(mFooterView, viewType);
         }
 
-        return getRecyclerViewHolder(getItemLayout());
+        return initRecyclerViewHolder(getItemLayout(parent), viewType);
 
     }
 
@@ -73,7 +77,7 @@ public abstract class HeaderFooterRecyclerAdapter<S extends Object> extends Recy
         if (getItemViewType(position) == TYPE_NORMAL) {
             //这里加载数据的时候要注意，是从position-1开始，因为position==0已经被header占用了
 //             ((ListHolder) holder).tv.setText(mDatas.get(position-1));
-            setDataToView(holder, mDatas);
+            setDataToView(holder, mDatas, position - 1);
             return;
         } else if (getItemViewType(position) == TYPE_HEADER) {
             return;
@@ -111,7 +115,7 @@ public abstract class HeaderFooterRecyclerAdapter<S extends Object> extends Recy
     }
 
 
-    abstract class RecyclerViewHolder extends RecyclerView.ViewHolder {
+    protected class RecyclerViewHolder extends RecyclerView.ViewHolder {
         protected int viewType;
 
         public RecyclerViewHolder(View itemView, int viewType) {
@@ -124,10 +128,8 @@ public abstract class HeaderFooterRecyclerAdapter<S extends Object> extends Recy
             if (itemView == mFooterView) {
                 return;
             }
-            initViews();
         }
 
-        protected abstract void initViews();
     }
 
 }

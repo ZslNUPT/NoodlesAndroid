@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.njupt.sniper.app.ui.fragment.NavigationFragment;
-import com.njupt.sniper.app.ui.fragment.SecFragment;
+import com.njupt.sniper.app.ui.fragment.TestFragment;
 import com.njupt.sniper.mylibrary.utils.ToastUtils;
 import com.njupt.sniper.ui.R;
 
@@ -42,7 +42,7 @@ public class HomeActivity extends BottomTabActivity {
     protected BottomTabActivity.TabInfo[] getTabs() {
         return new TabInfo[]{
                 new TabInfo(NavigationFragment.class, R.drawable.tab_home, R.string.home_tab_1, TAG_NAVI),
-                new TabInfo(SecFragment.class, R.drawable.tab_recruit, R.string.home_tab_2, TAG_RECRUIT)
+                new TabInfo(TestFragment.class, R.drawable.tab_recruit, R.string.home_tab_2, TAG_RECRUIT)
         };
     }
 

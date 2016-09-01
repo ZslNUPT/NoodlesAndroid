@@ -5,8 +5,8 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 /**
- * author：Zsl
- * date：2016/8/31
+ * @author bri
+ * @date 15-7-14.
  */
 public class IconTextView extends TextView {
     public IconTextView(Context context) {
@@ -25,5 +25,6 @@ public class IconTextView extends TextView {
     public void setText(CharSequence text, BufferType type) {
         super.setText(text, type);
         TypefaceUtils.setOcticons(this);
+
     }
 }

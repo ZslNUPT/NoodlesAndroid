@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -41,10 +42,10 @@ dependencies {
     compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.android.support:recyclerview-v7:+'
     compile files('libs/spring-data-rest-android-1.1.jar')
     compile 'com.fasterxml.jackson.core:jackson-databind:2.4.3'
     compile 'org.springframework.android:spring-android-rest-template:2.0.0.M1'
     compile 'com.android.support:recyclerview-v7:+'
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
 }

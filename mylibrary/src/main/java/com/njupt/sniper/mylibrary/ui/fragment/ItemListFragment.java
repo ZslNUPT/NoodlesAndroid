@@ -71,6 +71,8 @@ public abstract class ItemListFragment<E, S extends RecyclerView.Adapter> extend
         emptyText = (TextView) view.findViewById(R.id.empty_text);
 
         configureRecyclerView(getActivity(), recyclerView);
+
+        setEmptyText();
     }
 
     @Override
@@ -81,6 +83,20 @@ public abstract class ItemListFragment<E, S extends RecyclerView.Adapter> extend
         recyclerView = null;
 
         super.onDestroyView();
+    }
+
+
+    protected void setEmptyText() {
+        emptyText.setText(getEmptyText());
+        emptyText.setCompoundDrawablesWithIntrinsicBounds(0, getEmptyIconId(), 0, 0);
+    }
+
+    protected String getEmptyText() {
+        return "没有数据";
+    }
+
+    protected int getEmptyIconId() {
+        return R.drawable.empty_icon_1;
     }
 
     /**
@@ -95,7 +111,7 @@ public abstract class ItemListFragment<E, S extends RecyclerView.Adapter> extend
         recyclerView.setAdapter(createAdapter());
     }
 
-    protected HeaderFooterRecyclerAdapter<S> createAdapter() {
+    protected HeaderFooterRecyclerAdapter<E, S> createAdapter() {
         wrapped = createAdapter(items);
         return null;
     }
