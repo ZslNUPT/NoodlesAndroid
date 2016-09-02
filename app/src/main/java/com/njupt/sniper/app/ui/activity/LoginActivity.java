@@ -10,6 +10,8 @@ import com.njupt.sniper.app.utils.AuthorityUtils;
 import com.njupt.sniper.mylibrary.ui.activity.BasicActivity;
 import com.njupt.sniper.ui.R;
 
+import javax.inject.Inject;
+
 import butterknife.Bind;
 import butterknife.OnClick;
 
@@ -18,6 +20,9 @@ import butterknife.OnClick;
  * date：2016/8/25
  */
 public class LoginActivity extends BasicActivity {
+
+    @Inject
+    BaseHttpMethods baseHttpMethods;
 
     @Bind(R.id.login_username)
     EditText userName;
@@ -41,7 +46,7 @@ public class LoginActivity extends BasicActivity {
 
     @OnClick(R.id.to_login)
     void login(){
-        new BaseHttpMethods(this).getTokenByPassword(new ProgressSubscriber(subscriberOnNextListener,this),userName.getText().toString(),password.getText().toString());
+        baseHttpMethods.getTokenByPassword(new ProgressSubscriber(subscriberOnNextListener,this),userName.getText().toString(),password.getText().toString());
     }
 
 }

@@ -47,7 +47,7 @@
     <!--action bar custom view-->
     <string name="home_arrow_down">&#xe605;</string>
 
-    <!--paper pager activity-->
+    <!--paper pager context-->
     <string name="paper_pager_icon_counter">&#xe609;</string>
     <string name="paper_pager_answer_sheet">&#xe603;</string>
     <string name="paper_pager_title_icon">&#xe60d;</string>
@@ -55,7 +55,7 @@
     <!--answer sheet popup window-->
     <string name="answer_sheet_popup_icon_close">&#xe60d;</string>
 
-    <!--register activity-->
+    <!--register context-->
     <string name="register_icon_unlocking_key">&#xe61c;</string>
     <string name="register_icon_phone">&#xe616;</string>
 

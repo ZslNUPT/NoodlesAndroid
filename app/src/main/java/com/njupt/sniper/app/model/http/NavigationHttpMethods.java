@@ -1,27 +1,25 @@
 package com.njupt.sniper.app.model.http;
 
-import android.app.Activity;
-
 import com.njupt.sniper.app.model.entity.AudioEntity;
 import com.njupt.sniper.app.model.entity.StaticsEntity;
 import com.njupt.sniper.app.model.service.NavigationService;
-import com.njupt.sniper.app.model.service.ServiceGenerator;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.Module;
 import rx.Subscriber;
 
 /**
  * author：Zsl
  * date：2016/8/26
  */
+@Module
 public class NavigationHttpMethods extends BaseHttpMethods {
-    private NavigationService navigationService;
 
-    public NavigationHttpMethods(Activity activity) {
-        super(activity);
-        navigationService = ServiceGenerator.createService(NavigationService.class);
-    }
+    @Inject
+    private NavigationService navigationService;
 
     public void getStatics(Subscriber<StaticsEntity> subscriber) {
 
@@ -33,9 +31,9 @@ public class NavigationHttpMethods extends BaseHttpMethods {
         toSubscribe(resourcesMapToList(navigationService.getAudios()), subscriber);
     }
 
-    public void getPagedAudioList(Subscriber<List<AudioEntity>> subscriber) {
+    public void getPagedAudioList(Subscriber<List<AudioEntity>> subscriber,int page,int size) {
 
-        toSubscribe(pagedResourcesMapToList(navigationService.getPagedAudioList(0, 10)), subscriber);
+        toSubscribe(pagedResourcesMapToList(navigationService.getPagedAudioList(page, size)), subscriber);
     }
 
 }

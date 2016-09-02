@@ -2,6 +2,8 @@ package com.njupt.sniper.app;
 
 import android.app.Application;
 
+import com.njupt.sniper.app.ui.fragment.NavigationFragment;
+
 import javax.inject.Singleton;
 
 import dagger.Component;

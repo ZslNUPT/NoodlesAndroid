@@ -1,15 +1,14 @@
 package com.njupt.sniper.app.model.http;
 
 
-import android.app.Activity;
 import android.content.Intent;
 
+import com.njupt.sniper.app.MyApplication;
 import com.njupt.sniper.app.model.entity.OAuthTokenEntity;
 import com.njupt.sniper.app.model.service.OAuthService;
-import com.njupt.sniper.mylibrary.utils.ToastUtils;
 import com.njupt.sniper.app.ui.activity.LoginActivity;
-import com.njupt.sniper.app.model.service.ServiceGenerator;
 import com.njupt.sniper.app.utils.AuthorityUtils;
+import com.njupt.sniper.mylibrary.utils.ToastUtils;
 
 import org.springframework.hateoas.PagedResources;
 import org.springframework.hateoas.Resources;
@@ -17,6 +16,9 @@ import org.springframework.hateoas.Resources;
 import java.net.SocketTimeoutException;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import dagger.Module;
 import retrofit2.adapter.rxjava.HttpException;
 import rx.Observable;
 import rx.Subscriber;
@@ -30,6 +32,8 @@ import rx.schedulers.Schedulers;
  * author：Zsl
  * date：2016/8/23
  */
+
+@Module
 public class BaseHttpMethods {
 
     private final String clientId = "stu-app";
@@ -37,27 +41,19 @@ public class BaseHttpMethods {
     private final String grantTypePassword = "password";
     private final String grantTypeRefreshToken = "refresh_token";
 
-    private Activity activity;
-
-    //构造方法私有
-    public BaseHttpMethods(Activity activity) {
-        this.activity = activity;
-    }
+    @Inject
+    OAuthService oAuthService;
 
     public void getTokenByPassword(Subscriber<OAuthTokenEntity> subscriber, String username, String password) {
 
-        OAuthService movieService = ServiceGenerator.createService(OAuthService.class,false);
-
-        Observable observable = movieService.getTokenByPassword(clientId, clientSecret, username, password, grantTypePassword);
+        Observable observable = oAuthService.getTokenByPassword(clientId, clientSecret, username, password, grantTypePassword);
 
         toSubscribe(observable, subscriber);
     }
 
     public Observable<OAuthTokenEntity> refreshOAuthToken(String refreshToken) {
 
-        OAuthService movieService = ServiceGenerator.createService(OAuthService.class,false);
-
-        Observable<OAuthTokenEntity> observable = movieService.getTokenByRefreshToken(clientId, clientSecret, grantTypeRefreshToken, refreshToken);
+        Observable<OAuthTokenEntity> observable = oAuthService.getTokenByRefreshToken(clientId, clientSecret, grantTypeRefreshToken, refreshToken);
 
         return observable;
     }
@@ -110,7 +106,7 @@ public class BaseHttpMethods {
                                     public void call(Throwable throwable) {
                                         //refreshToken无效,跳登录
                                         if (((HttpException) throwable).code() == 400) {
-                                            activity.startActivity(new Intent(activity, LoginActivity.class));
+                                            MyApplication.getInstance().startActivity(new Intent( MyApplication.getInstance(), LoginActivity.class));
                                         }
                                     }
                                 });

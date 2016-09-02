@@ -18,6 +18,11 @@ android {
         }
     }
 
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
     packagingOptions {
         exclude 'META-INF/ASL2.0'
         exclude 'META-INF/LICENSE'
@@ -54,5 +59,8 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
 
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'de.hdodenhof:circleimageview:2.0.0'
 
 }
