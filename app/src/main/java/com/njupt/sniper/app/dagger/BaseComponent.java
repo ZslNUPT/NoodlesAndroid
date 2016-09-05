@@ -3,6 +3,7 @@ package com.njupt.sniper.app.dagger;
 import com.njupt.sniper.app.MyApplication;
 import com.njupt.sniper.app.common.activity.BasicActivity;
 import com.njupt.sniper.app.common.fragment.BasicFragment;
+import com.njupt.sniper.app.ui.activity.LoginActivity;
 import com.njupt.sniper.app.ui.fragment.NavigationFragment;
 
 /**
@@ -14,6 +15,8 @@ public interface BaseComponent {
     void inject(MyApplication myApplication);
 
     void inject(BasicActivity basicActivity);
+
+    void inject(LoginActivity basicActivity);
 
     void inject(BasicFragment basicFragment);
 

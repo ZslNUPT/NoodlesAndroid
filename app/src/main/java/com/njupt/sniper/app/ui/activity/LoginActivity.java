@@ -1,7 +1,10 @@
 package com.njupt.sniper.app.ui.activity;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.widget.EditText;
 
+import com.njupt.sniper.app.MyApplication;
 import com.njupt.sniper.app.R;
 import com.njupt.sniper.app.common.activity.BasicActivity;
 import com.njupt.sniper.app.dagger.AccountModule;
@@ -54,6 +57,11 @@ public class LoginActivity extends BasicActivity {
 
     }
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MyApplication.getMainComponent().inject(this);
+    }
 
     @Override
     public int getLayoutId() {

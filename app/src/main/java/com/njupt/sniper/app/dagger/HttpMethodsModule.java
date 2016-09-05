@@ -1,6 +1,7 @@
 package com.njupt.sniper.app.dagger;
 
 
+import android.app.Activity;
 import android.content.Intent;
 
 import com.njupt.sniper.app.MyApplication;
@@ -38,13 +39,16 @@ public class HttpMethodsModule {
 
     OAuthService oAuthService;
 
+    Activity activity;
+
     public HttpMethodsModule() {
     }
 
     @Inject
-    public HttpMethodsModule(AccountModule accountConfig, OAuthService oAuthService) {
+    public HttpMethodsModule(AccountModule accountConfig, OAuthService oAuthService, Activity activity) {
         this.accountConfig = accountConfig;
         this.oAuthService = oAuthService;
+        this.activity=activity;
     }
 
     public <T> Observable<List<T>> pagedResourcesMapToList(Observable<PagedResources<T>> observable) {
@@ -105,7 +109,10 @@ public class HttpMethodsModule {
                                     public Observable<?> call(Throwable throwable) {
                                         //refreshToken无效,跳登录
                                         if (((HttpException) throwable).code() == 400) {
-                                            MyApplication.getInstance().startActivity(new Intent(MyApplication.getInstance(), LoginActivity.class));
+                                            Intent intent=new Intent();
+                                            intent.setClass( MyApplication.getInstance(),LoginActivity.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                            MyApplication.getInstance().startActivity(intent);
                                         }
                                         return Observable.just(AuthorityUtils.getAuthToken());
                                     }

@@ -1,7 +1,6 @@
 package com.njupt.sniper.app.dagger;
 
 import com.njupt.sniper.app.MyApplication;
-import com.njupt.sniper.app.model.service.NavigationService;
 
 import javax.inject.Singleton;
 
