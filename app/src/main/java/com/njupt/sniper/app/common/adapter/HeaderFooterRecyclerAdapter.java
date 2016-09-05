@@ -1,4 +1,4 @@
-package com.njupt.sniper.mylibrary.ui.adapter;
+package com.njupt.sniper.app.common.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

@@ -1,4 +1,4 @@
-package com.njupt.sniper.mylibrary.ui;
+package com.njupt.sniper.app.common;
 
 import android.content.Context;
 import android.content.res.TypedArray;

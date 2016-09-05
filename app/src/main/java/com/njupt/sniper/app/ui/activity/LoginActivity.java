@@ -2,18 +2,21 @@ package com.njupt.sniper.app.ui.activity;
 
 import android.widget.EditText;
 
+import com.njupt.sniper.app.R;
+import com.njupt.sniper.app.common.activity.BasicActivity;
+import com.njupt.sniper.app.dagger.AccountModule;
 import com.njupt.sniper.app.model.entity.OAuthTokenEntity;
-import com.njupt.sniper.app.model.http.BaseHttpMethods;
+import com.njupt.sniper.app.model.service.OAuthService;
 import com.njupt.sniper.app.model.subscribers.ProgressSubscriber;
 import com.njupt.sniper.app.model.subscribers.SimpleSubscriberOnNextListener;
 import com.njupt.sniper.app.utils.AuthorityUtils;
-import com.njupt.sniper.mylibrary.ui.activity.BasicActivity;
-import com.njupt.sniper.ui.R;
 
 import javax.inject.Inject;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import rx.Observable;
+import rx.Subscriber;
 
 /**
  * author：Zsl
@@ -21,14 +24,17 @@ import butterknife.OnClick;
  */
 public class LoginActivity extends BasicActivity {
 
-    @Inject
-    BaseHttpMethods baseHttpMethods;
-
     @Bind(R.id.login_username)
     EditText userName;
 
     @Bind(R.id.login_password)
     EditText password;
+
+    @Inject
+    AccountModule accountConfig;
+
+    @Inject
+    OAuthService oAuthService;
 
     SimpleSubscriberOnNextListener<OAuthTokenEntity> subscriberOnNextListener = new SimpleSubscriberOnNextListener<OAuthTokenEntity>() {
         @Override
@@ -39,14 +45,24 @@ public class LoginActivity extends BasicActivity {
         }
     };
 
+    public void getTokenByPassword(Subscriber<OAuthTokenEntity> subscriber, String username, String password) {
+
+        Observable observable = oAuthService.getTokenByPassword(accountConfig.getClientId(), accountConfig.getClientSecret(),
+                username, password, accountConfig.getGrantTypePassword());
+
+        baseHttpMethods.toSubscribe(observable, subscriber);
+
+    }
+
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_login;
     }
 
     @OnClick(R.id.to_login)
-    void login(){
-        baseHttpMethods.getTokenByPassword(new ProgressSubscriber(subscriberOnNextListener,this),userName.getText().toString(),password.getText().toString());
+    void login() {
+        getTokenByPassword(new ProgressSubscriber(subscriberOnNextListener, this), userName.getText().toString(), password.getText().toString());
     }
 
 }

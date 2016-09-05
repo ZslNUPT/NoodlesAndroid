@@ -1,8 +1,8 @@
 package com.njupt.sniper.app;
 
 import android.app.Application;
-import android.content.Context;
 
+import com.njupt.sniper.app.dagger.MainComponent;
 import com.njupt.sniper.mylibrary.utils.ToastUtils;
 
 /**
@@ -11,7 +11,7 @@ import com.njupt.sniper.mylibrary.utils.ToastUtils;
  */
 public class MyApplication extends Application {
     private static MyApplication mInstance;
-    private AppComponent appComponent;
+    private static MainComponent mainComponent;
 
     @Override
     public void onCreate() {
@@ -19,22 +19,15 @@ public class MyApplication extends Application {
         mInstance = this;
         ToastUtils.init(this);
 
-        appComponent = DaggerAppComponent.builder()
-                .appModule(new AppModule(this))
-                .build();
-    }
+        mainComponent = MainComponent.Initializer.init(mInstance);
 
-    public static MyApplication get(Context context){
-        return (MyApplication)context.getApplicationContext();
-    }
-
-    public AppComponent getAppComponent(){
-        return appComponent;
     }
 
     public static MyApplication getInstance() {
         return mInstance;
     }
 
-
+    public static MainComponent getMainComponent() {
+        return mainComponent;
+    }
 }

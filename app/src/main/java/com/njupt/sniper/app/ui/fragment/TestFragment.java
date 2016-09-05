@@ -5,7 +5,7 @@ import android.support.v4.content.Loader;
 
 import com.njupt.sniper.app.model.entity.AudioEntity;
 import com.njupt.sniper.app.ui.adapter.AudioAdapter;
-import com.njupt.sniper.mylibrary.ui.fragment.ItemListFragment;
+import com.njupt.sniper.app.common.fragment.ItemListFragment;
 
 import java.util.List;
 
@@ -34,5 +34,10 @@ public class TestFragment extends ItemListFragment<AudioEntity, AudioAdapter> {
     @Override
     public void onLoaderReset(Loader<List<AudioEntity>> loader) {
 
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return 0;
     }
 }

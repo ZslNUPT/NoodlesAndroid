@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TabHost;
 
 import com.njupt.sniper.mylibrary.R;
-import com.njupt.sniper.mylibrary.ui.activity.BasicActivity;
+import com.njupt.sniper.app.common.activity.BasicActivity;
 
 import butterknife.Bind;
 
@@ -36,9 +36,6 @@ public abstract class BottomTabActivity extends BasicActivity {
         initTabs();
 
     }
-
-
-
 
     @Override
     public int getLayoutId() {

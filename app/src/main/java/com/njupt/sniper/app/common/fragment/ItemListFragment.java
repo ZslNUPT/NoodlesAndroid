@@ -1,9 +1,9 @@
-package com.njupt.sniper.mylibrary.ui.fragment;
+package com.njupt.sniper.app.common.fragment;
+
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,9 +14,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.njupt.sniper.mylibrary.R;
-import com.njupt.sniper.mylibrary.ui.RecyclerDecoration;
-import com.njupt.sniper.mylibrary.ui.adapter.HeaderFooterRecyclerAdapter;
+import com.njupt.sniper.app.R;
+import com.njupt.sniper.app.common.RecyclerDecoration;
+import com.njupt.sniper.app.common.adapter.HeaderFooterRecyclerAdapter;
 
 import java.util.Collections;
 import java.util.List;
@@ -25,7 +25,7 @@ import java.util.List;
  * @author chenshenglong
  * @date 16-8-29
  */
-public abstract class ItemListFragment<E, S extends RecyclerView.Adapter> extends Fragment implements LoaderManager.LoaderCallbacks<List<E>> {
+public abstract class ItemListFragment<E, S extends RecyclerView.Adapter> extends BasicFragment implements LoaderManager.LoaderCallbacks<List<E>> {
 
     protected List<E> items = Collections.emptyList();
 

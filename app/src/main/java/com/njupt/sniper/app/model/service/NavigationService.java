@@ -14,7 +14,7 @@ import rx.Observable;
  * author：Zsl
  * date：2016/8/25
  */
-public interface NavigationService {
+public interface NavigationService{
     @GET("api/homes/statistics")
     Observable<StaticsEntity> getStatics();
 

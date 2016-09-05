@@ -1,7 +1,14 @@
-package com.njupt.sniper.app.model.service;
+package com.njupt.sniper.app.dagger;
 
-import com.njupt.sniper.app.model.http.ObjectMapperBuilder;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
+import com.njupt.sniper.app.model.service.NavigationService;
+import com.njupt.sniper.app.model.service.OAuthService;
 import com.njupt.sniper.app.utils.AuthorityUtils;
+
+import org.springframework.hateoas.hal.Jackson2HalModule;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -68,13 +75,30 @@ public class ServiceModule {
     }
 
     @Provides
-    OAuthService oAuthService(Retrofit retrofit) {
+    @Singleton
+    protected  OAuthService oAuthService(Retrofit retrofit) {
         return retrofit.create(OAuthService.class);
     }
 
     @Provides
-    NavigationService navigationService(Retrofit retrofit) {
+    @Singleton
+    protected NavigationService navigationService(Retrofit retrofit) {
         return retrofit.create(NavigationService.class);
     }
 
+    /**
+     * author：Zsl
+     * date：2016/8/30
+     */
+    public abstract static class ObjectMapperBuilder {
+
+        public static ObjectMapper build() {
+            ObjectMapper mapper = new ObjectMapper();
+            mapper.setDateFormat(new ISO8601DateFormat());
+            mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            mapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
+            mapper.registerModule(new Jackson2HalModule());
+            return mapper;
+        }
+    }
 }

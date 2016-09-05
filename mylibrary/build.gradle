@@ -19,8 +19,8 @@ android {
     }
 
     compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
+        targetCompatibility 1.7
+        sourceCompatibility 1.7
     }
 
     packagingOptions {
@@ -32,9 +32,6 @@ android {
     }
 
 }
-
-
-
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])

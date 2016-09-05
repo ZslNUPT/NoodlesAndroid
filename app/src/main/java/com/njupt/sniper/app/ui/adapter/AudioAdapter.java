@@ -9,10 +9,10 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.njupt.sniper.app.R;
+import com.njupt.sniper.app.common.adapter.HeaderFooterRecyclerAdapter;
 import com.njupt.sniper.app.model.entity.AudioEntity;
-import com.njupt.sniper.mylibrary.ui.adapter.HeaderFooterRecyclerAdapter;
 import com.njupt.sniper.mylibrary.utils.ToastUtils;
-import com.njupt.sniper.ui.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 

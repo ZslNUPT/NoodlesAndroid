@@ -1,4 +1,4 @@
-package com.njupt.sniper.mylibrary.ui.activity;
+package com.njupt.sniper.app.common.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
-import com.njupt.sniper.mylibrary.R;
+import com.njupt.sniper.app.R;
 
 import java.util.ArrayList;
 import java.util.List;
