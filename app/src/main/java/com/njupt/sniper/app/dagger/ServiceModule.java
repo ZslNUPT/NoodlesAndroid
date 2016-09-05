@@ -46,7 +46,7 @@ public class ServiceModule {
 
     @Provides
     public String getApiBaseUrl() {
-        return "http://192.168.1.7:8315/";
+        return "http://develop.hithinksoft.com:8787";
     }
 
     @Provides

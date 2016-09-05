@@ -1,6 +1,7 @@
 package com.njupt.sniper.app.dagger;
 
 import com.njupt.sniper.app.MyApplication;
+import com.njupt.sniper.app.model.service.NavigationService;
 
 import javax.inject.Singleton;
 
@@ -23,6 +24,7 @@ public interface MainComponent extends BaseComponent{
                     .appModule(new AppModule(app))
                     .accountModule(new AccountModule(app))
                     .httpMethodsModule(new HttpMethodsModule())
+                    .serviceModule(new ServiceModule())
                     .build();
         }
     }

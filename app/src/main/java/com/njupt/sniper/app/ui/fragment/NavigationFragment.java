@@ -1,7 +1,10 @@
 package com.njupt.sniper.app.ui.fragment;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.widget.TextView;
 
+import com.njupt.sniper.app.MyApplication;
 import com.njupt.sniper.app.R;
 import com.njupt.sniper.app.common.fragment.BasicFragment;
 import com.njupt.sniper.app.model.entity.StaticsEntity;
@@ -30,6 +33,13 @@ public class NavigationFragment extends BasicFragment {
     protected int getLayoutId() {
         return R.layout.fragment_navigation;
     }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        MyApplication.getMainComponent().inject(this); // 应用注入
+    }
+
 
     @OnClick(R.id.navigation_click)
     public void onClick() {

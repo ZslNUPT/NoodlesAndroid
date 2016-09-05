@@ -46,7 +46,7 @@ public abstract class BottomTabActivity extends BasicActivity {
 
     private void initTabs() {
         //实例化TabHost对象，得到TabHost
-        mTabHost.setup(this, getSupportFragmentManager(), R.id.tab_content);
+        mTabHost.setup(this, getSupportFragmentManager(), R.id.fragment_container);
         mTabHost.getTabWidget().setDividerDrawable(null);
 
         mInflater = LayoutInflater.from(this);
