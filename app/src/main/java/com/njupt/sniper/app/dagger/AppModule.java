@@ -2,8 +2,6 @@ package com.njupt.sniper.app.dagger;
 
 import com.njupt.sniper.app.MyApplication;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 
@@ -20,7 +18,7 @@ public class AppModule {
     }
 
     @Provides
-    @Singleton
+    @AppScope
     protected MyApplication myApplication() {
         return mApplication;
     }

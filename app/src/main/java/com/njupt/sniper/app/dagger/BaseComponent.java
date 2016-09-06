@@ -1,10 +1,10 @@
 package com.njupt.sniper.app.dagger;
 
 import com.njupt.sniper.app.MyApplication;
-import com.njupt.sniper.app.common.activity.BasicActivity;
-import com.njupt.sniper.app.common.fragment.BasicFragment;
+import com.njupt.sniper.app.common.activity.BaseActivity;
+import com.njupt.sniper.app.common.presenter.BasePresenter;
 import com.njupt.sniper.app.ui.activity.LoginActivity;
-import com.njupt.sniper.app.ui.fragment.NavigationFragment;
+import com.njupt.sniper.app.ui.presenter.NavigationPresenter;
 
 /**
  * author：Zsl
@@ -14,11 +14,12 @@ public interface BaseComponent {
 
     void inject(MyApplication myApplication);
 
-    void inject(BasicActivity basicActivity);
+    void inject(BaseActivity basicActivity);
 
     void inject(LoginActivity basicActivity);
 
-    void inject(BasicFragment basicFragment);
+    void inject(NavigationPresenter navigationPresenter);
 
-    void inject(NavigationFragment basicFragment);
+    void inject(BasePresenter basePresenter);
+
 }

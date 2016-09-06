@@ -2,15 +2,13 @@ package com.njupt.sniper.app.dagger;
 
 import com.njupt.sniper.app.MyApplication;
 
-import javax.inject.Singleton;
-
 import dagger.Component;
 
 /**
  * author：Zsl
  * date：2016/9/5
  */
-@Singleton
+@AppScope
 @Component(modules = {AppModule.class, AccountModule.class,HttpMethodsModule.class,ServiceModule.class})
 public interface MainComponent extends BaseComponent{
     final class Initializer {

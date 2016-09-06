@@ -6,7 +6,7 @@ import android.widget.EditText;
 
 import com.njupt.sniper.app.MyApplication;
 import com.njupt.sniper.app.R;
-import com.njupt.sniper.app.common.activity.BasicActivity;
+import com.njupt.sniper.app.common.activity.BaseActivity;
 import com.njupt.sniper.app.dagger.AccountModule;
 import com.njupt.sniper.app.model.entity.OAuthTokenEntity;
 import com.njupt.sniper.app.model.service.OAuthService;
@@ -25,7 +25,7 @@ import rx.Subscriber;
  * author：Zsl
  * date：2016/8/25
  */
-public class LoginActivity extends BasicActivity {
+public class LoginActivity extends BaseActivity {
 
     @Bind(R.id.login_username)
     EditText userName;

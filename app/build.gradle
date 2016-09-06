@@ -1,4 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt' //gradle android apt插件，必须配置，在build自动根据dagger的配置生成代码片段
+apply plugin: 'me.tatarka.retrolambda'
+
 
 android {
     compileSdkVersion 23
@@ -18,7 +21,10 @@ android {
         }
     }
 
-
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     packagingOptions {
         exclude 'META-INF/services/javax.annotation.processing.Processor'
@@ -33,6 +39,19 @@ android {
     }
 }
 
+buildscript{
+    repositories {
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.3'
+        //添加apt插件
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+
+        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
+    }
+}
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -40,7 +59,6 @@ dependencies {
 
     compile project(':mylibrary')
 
-    apply plugin: 'com.neenbedankt.android-apt' //gradle android apt插件，必须配置，在build自动根据dagger的配置生成代码片段
     provided 'org.glassfish:javax.annotation:10.0-b28'
     compile 'com.google.dagger:dagger:2.0.2'
     compile 'com.google.dagger:dagger-compiler:2.0.2'

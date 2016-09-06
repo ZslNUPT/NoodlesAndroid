@@ -16,7 +16,7 @@ import java.util.List;
  * author：Zsl
  * date：2016/3/24
  */
-public abstract class MultiFragmentActivity extends BasicActivity {
+public abstract class MultiFragmentActivity extends BaseActivity {
     public List<Fragment> fragments = new ArrayList<>();
 
     private int currentPosition;

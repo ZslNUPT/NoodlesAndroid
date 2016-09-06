@@ -13,8 +13,6 @@ import org.springframework.hateoas.hal.Jackson2HalModule;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.Interceptor;
@@ -34,8 +32,8 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 public class ServiceModule {
 
     @Provides
-    @Singleton
-    public Retrofit provideRetrofit(OkHttpClient okHttpClient, String baseUrl) {
+    @AppScope
+    protected Retrofit provideRetrofit(OkHttpClient okHttpClient, String baseUrl) {
         Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(JacksonConverterFactory.create(ObjectMapperBuilder.build()))
@@ -45,13 +43,13 @@ public class ServiceModule {
     }
 
     @Provides
-    public String getApiBaseUrl() {
+    protected String getApiBaseUrl() {
         return "http://develop.hithinksoft.com:8787";
     }
 
     @Provides
-    @Singleton
-    public OkHttpClient provideOkHttpClient() {
+    @AppScope
+    protected OkHttpClient provideOkHttpClient() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(new Interceptor() {
             @Override
@@ -75,13 +73,13 @@ public class ServiceModule {
     }
 
     @Provides
-    @Singleton
+    @AppScope
     protected  OAuthService oAuthService(Retrofit retrofit) {
         return retrofit.create(OAuthService.class);
     }
 
     @Provides
-    @Singleton
+    @AppScope
     protected NavigationService navigationService(Retrofit retrofit) {
         return retrofit.create(NavigationService.class);
     }

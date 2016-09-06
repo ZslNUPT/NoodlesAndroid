@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TabHost;
 
 import com.njupt.sniper.mylibrary.R;
-import com.njupt.sniper.app.common.activity.BasicActivity;
+import com.njupt.sniper.app.common.activity.BaseActivity;
 
 import butterknife.Bind;
 
@@ -17,7 +17,7 @@ import butterknife.Bind;
  * author：Zsl
  * date：2016/8/31
  */
-public abstract class BottomTabActivity extends BasicActivity {
+public abstract class BottomTabActivity extends BaseActivity {
     @Bind(R.id.tab_host)
     FragmentTabHost mTabHost;
 

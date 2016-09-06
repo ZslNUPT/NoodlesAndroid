@@ -25,7 +25,7 @@ import java.util.List;
  * @author chenshenglong
  * @date 16-8-29
  */
-public abstract class ItemListFragment<E, S extends RecyclerView.Adapter> extends BasicFragment implements LoaderManager.LoaderCallbacks<List<E>> {
+public abstract class ItemListFragment<E, S extends RecyclerView.Adapter> extends BaseFragment implements LoaderManager.LoaderCallbacks<List<E>> {
 
     protected List<E> items = Collections.emptyList();
 

@@ -1,7 +1,6 @@
 package com.njupt.sniper.app.dagger;
 
 
-import android.app.Activity;
 import android.content.Intent;
 
 import com.njupt.sniper.app.MyApplication;
@@ -39,16 +38,13 @@ public class HttpMethodsModule {
 
     OAuthService oAuthService;
 
-    Activity activity;
-
     public HttpMethodsModule() {
     }
 
     @Inject
-    public HttpMethodsModule(AccountModule accountConfig, OAuthService oAuthService, Activity activity) {
+    public HttpMethodsModule(AccountModule accountConfig, OAuthService oAuthService) {
         this.accountConfig = accountConfig;
         this.oAuthService = oAuthService;
-        this.activity=activity;
     }
 
     public <T> Observable<List<T>> pagedResourcesMapToList(Observable<PagedResources<T>> observable) {
@@ -69,7 +65,10 @@ public class HttpMethodsModule {
         });
     }
 
+    boolean isInlogin;
+
     public <T> void toSubscribe(final Observable<T> o, Subscriber<T> s) {
+
 
         o.retry(new Func2<Integer, Throwable, Boolean>() {//设置请求次数
             @Override
@@ -96,6 +95,7 @@ public class HttpMethodsModule {
     }
 
     public Observable<?> handleExc(Throwable throwable) {
+
         if (throwable instanceof HttpException) {
             //请求token无效
             if (((HttpException) throwable).code() == 401) {
@@ -108,11 +108,12 @@ public class HttpMethodsModule {
                                     @Override
                                     public Observable<?> call(Throwable throwable) {
                                         //refreshToken无效,跳登录
-                                        if (((HttpException) throwable).code() == 400) {
+                                        if (((HttpException) throwable).code() == 400&&!isInlogin) {
                                             Intent intent=new Intent();
                                             intent.setClass( MyApplication.getInstance(),LoginActivity.class);
                                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                             MyApplication.getInstance().startActivity(intent);
+                                            isInlogin=true;
                                         }
                                         return Observable.just(AuthorityUtils.getAuthToken());
                                     }
