@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import com.njupt.sniper.app.utils.TypefaceUtils;
+
 /**
  * @author bri
  * @date 15-7-14.

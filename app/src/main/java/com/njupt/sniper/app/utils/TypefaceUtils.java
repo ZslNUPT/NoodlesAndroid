@@ -1,4 +1,4 @@
-package com.njupt.sniper.app.common.customView;
+package com.njupt.sniper.app.utils;
 
 import android.content.Context;
 import android.graphics.Paint;

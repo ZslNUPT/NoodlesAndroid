@@ -1,11 +1,11 @@
 package com.njupt.sniper.app.ui.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
 import com.njupt.sniper.app.R;
+import com.njupt.sniper.app.common.customView.AutoLoadImageView;
 import com.njupt.sniper.app.common.fragment.BaseFragment;
 import com.njupt.sniper.app.ui.presenter.NavigationPresenter;
 import com.njupt.sniper.app.ui.viewInterface.NavigationView;
@@ -22,6 +22,9 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
     @Bind(R.id.navigation_result)
     TextView result;
 
+    @Bind(R.id.iv_cover)
+    AutoLoadImageView iv_cover;
+
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
 
@@ -33,18 +36,13 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
-
-    @Override
     protected NavigationPresenter getChildPresenter() {
         return new NavigationPresenter(this,getActivity());
     }
 
     @Override
     protected View getLoadingTargetView() {
-        return null;
+        return iv_cover;
     }
 
 

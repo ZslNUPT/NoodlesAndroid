@@ -1,4 +1,4 @@
-package com.njupt.sniper.app.common.custom;
+package com.njupt.sniper.app.common.customView;
 
 import android.content.Context;
 import android.util.AttributeSet;

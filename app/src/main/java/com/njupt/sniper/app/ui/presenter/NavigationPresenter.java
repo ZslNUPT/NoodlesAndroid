@@ -37,7 +37,15 @@ public class NavigationPresenter extends BasePresenter {
         baseHttpMethods.toSubscribe(navigationService.getStatics(), new ProgressSubscriber<>(new SimpleSubscriberOnNextListener<StaticsEntity>() {
             @Override
             public void onNext(StaticsEntity staticsEntity) {
-                mView.setResult(staticsEntity.resume_rank.share_content);
+//                mView.setResult(staticsEntity.resume_rank.share_content);
+                mView.showNetError();
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                mView.showNetError();
             }
         },mActivity));
     }

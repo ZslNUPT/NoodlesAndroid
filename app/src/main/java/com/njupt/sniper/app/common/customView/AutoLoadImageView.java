@@ -3,7 +3,7 @@
  *
  * @author Fernando Cejas (the android10 coder)
  */
-package com.njupt.sniper.app.common.custom;
+package com.njupt.sniper.app.common.customView;
 
 import android.app.Activity;
 import android.content.Context;
