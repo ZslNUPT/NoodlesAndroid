@@ -1,6 +1,6 @@
 package com.njupt.sniper.app.ui.viewInterface;
 
-import com.njupt.sniper.app.common.BaseView;
+import com.njupt.sniper.app.common.view.BaseView;
 
 /**
  * author：Zsl

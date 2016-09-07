@@ -2,7 +2,7 @@ package com.njupt.sniper.app.common.presenter;
 
 import android.app.Activity;
 
-import com.njupt.sniper.app.common.BaseListView;
+import com.njupt.sniper.app.common.view.BaseListView;
 import com.njupt.sniper.app.model.subscribers.ProgressSubscriber;
 import com.njupt.sniper.app.model.subscribers.SimpleSubscriberOnNextListener;
 

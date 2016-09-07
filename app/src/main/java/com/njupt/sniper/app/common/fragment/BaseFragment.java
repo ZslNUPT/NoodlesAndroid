@@ -13,9 +13,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.njupt.sniper.app.R;
-import com.njupt.sniper.app.common.BaseView;
+import com.njupt.sniper.app.common.view.BaseView;
 import com.njupt.sniper.app.common.activity.BaseActivity;
-import com.njupt.sniper.app.common.loading.VaryViewHelperController;
+import com.njupt.sniper.app.common.customView.loading.VaryViewHelperController;
 import com.njupt.sniper.app.common.presenter.Presenter;
 
 import java.util.List;

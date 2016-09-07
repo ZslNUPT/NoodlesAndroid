@@ -6,7 +6,7 @@
 
     <include layout="@layout/include_tool_bar" />
 
-    <com.njupt.sniper.app.common.refresh.XRecyclerView
+    <com.njupt.sniper.app.common.customView.refresh.XRecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

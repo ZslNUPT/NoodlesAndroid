@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.njupt.sniper.app.common.refresh.XRecyclerView;
+import com.njupt.sniper.app.common.customView.refresh.XRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;

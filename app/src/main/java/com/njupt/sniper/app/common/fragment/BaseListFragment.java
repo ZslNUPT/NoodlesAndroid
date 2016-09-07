@@ -5,12 +5,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
 import com.njupt.sniper.app.R;
-import com.njupt.sniper.app.common.BaseListView;
+import com.njupt.sniper.app.common.view.BaseListView;
 import com.njupt.sniper.app.common.adapter.BaseViewHolder;
 import com.njupt.sniper.app.common.adapter.RecycleViewAdapter;
 import com.njupt.sniper.app.common.presenter.BaseListPresenter;
-import com.njupt.sniper.app.common.refresh.ProgressStyle;
-import com.njupt.sniper.app.common.refresh.XRecyclerView;
+import com.njupt.sniper.app.common.customView.refresh.ProgressStyle;
+import com.njupt.sniper.app.common.customView.refresh.XRecyclerView;
 
 import java.util.List;
 

@@ -3,7 +3,7 @@ package com.njupt.sniper.app.ui.presenter;
 import android.app.Activity;
 
 import com.njupt.sniper.app.MyApplication;
-import com.njupt.sniper.app.common.BaseListView;
+import com.njupt.sniper.app.common.view.BaseListView;
 import com.njupt.sniper.app.common.presenter.BaseListPresenter;
 import com.njupt.sniper.app.model.entity.AudioEntity;
 import com.njupt.sniper.app.model.service.AudioService;
