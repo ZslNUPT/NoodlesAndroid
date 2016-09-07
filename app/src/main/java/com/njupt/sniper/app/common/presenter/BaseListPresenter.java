@@ -16,7 +16,6 @@ import rx.Observable;
  */
 public abstract class BaseListPresenter<T> extends BasePresenter {
     protected BaseListView mView;
-    protected List<T> items;
 
     public BaseListPresenter(BaseListView view, Activity activity) {
         mView = view;
@@ -27,15 +26,12 @@ public abstract class BaseListPresenter<T> extends BasePresenter {
 
     @Override
     public void requestData(Object... o) {
-        if(items!=null)  return;
 
         mView.showLoading();
         baseHttpMethods.toSubscribe(getData(), new ProgressSubscriber<>(new SimpleSubscriberOnNextListener<List<T>>() {
 
             @Override
             public void onNext(List<T> ts) {
-                items=ts;
-                mView.hideLoading();
                 mView.configureRecyclerView(ts);
             }
 
