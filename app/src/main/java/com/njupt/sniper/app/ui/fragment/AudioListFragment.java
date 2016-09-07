@@ -15,13 +15,13 @@ public class AudioListFragment extends BaseListFragment<AudioEntity> {
 
     @Override
     protected BaseListPresenter getChildPresenter() {
-        return new AudioListPresenter(this,getActivity());
+        return new AudioListPresenter(this, getActivity());
     }
 
     @Override
     protected void fitDates(BaseViewHolder helper, AudioEntity item) {
-        helper.setText(R.id.navi_audio_title,item.getTitle())
-                .setImageUrl(R.id.navi_audio_img,getActivity(),item.getImg());
+        helper.setText(R.id.navi_audio_title, item.getTitle())
+                .setImageUrl(R.id.navi_audio_img, getActivity(), item.getImg());
     }
 
     @Override

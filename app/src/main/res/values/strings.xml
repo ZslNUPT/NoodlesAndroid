@@ -5,6 +5,8 @@
     <string name="home_tab_1">首页</string>
     <string name="home_tab_2">音频列表</string>
 
+    <string name="listview_to_refresh">重新加载</string>
+
     <string name="listview_header_hint_normal">下拉刷新</string>
     <string name="listview_header_hint_release">释放立即刷新</string>
     <string name="listview_loading">正在加载</string>

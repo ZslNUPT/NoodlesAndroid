@@ -22,11 +22,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
-        <Button
+        <TextView
             android:id="@+id/pager_error_loadingAgain"
             android:layout_marginTop="13dip"
-            android:background="@drawable/net_error_loading_selector"
             android:layout_width="112dip"
+            android:background="@color/grey01"
+            android:text="@string/listview_to_refresh"
+            android:gravity="center"
             android:layout_height="32dip"/>
     </LinearLayout>
 </FrameLayout>

@@ -1,6 +1,6 @@
 package com.njupt.sniper.app;
 
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import com.njupt.sniper.app.di.MainComponent;
 import com.njupt.sniper.mylibrary.utils.ToastUtils;
@@ -9,7 +9,7 @@ import com.njupt.sniper.mylibrary.utils.ToastUtils;
  * author：Zsl
  * date：2016/8/25
  */
-public class MyApplication extends Application {
+public class MyApplication extends MultiDexApplication {
     private static MyApplication mInstance;
     private static MainComponent mainComponent;
 

@@ -3,7 +3,6 @@ package com.njupt.sniper.app.common.loading;
 
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.njupt.sniper.app.R;
@@ -23,7 +22,7 @@ public class VaryViewHelperController {
 
     public void showNetworkError(View.OnClickListener onClickListener) {
         View layout = helper.inflate(R.layout.pager_error);
-        Button againBtn = (Button) layout.findViewById(R.id.pager_error_loadingAgain);
+        TextView againBtn = (TextView) layout.findViewById(R.id.pager_error_loadingAgain);
         if (null != onClickListener) {
             againBtn.setOnClickListener(onClickListener);
         }

@@ -1,6 +1,5 @@
 package com.njupt.sniper.app.ui.fragment;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,7 +21,7 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
     TextView result;
 
     @Override
-    protected void initView(View view, Bundle savedInstanceState) {
+    protected void baseInit() {
 
     }
 

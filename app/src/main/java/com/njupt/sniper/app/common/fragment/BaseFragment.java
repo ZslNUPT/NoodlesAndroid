@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.njupt.sniper.app.common.BaseView;
 import com.njupt.sniper.app.common.activity.BaseActivity;
@@ -30,10 +31,11 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment impleme
     //通用loading页error页等的控制器
     private VaryViewHelperController mVaryViewHelperController;
 
-    protected abstract void initView(View view, Bundle savedInstanceState);
+//    @Bind(R.id.tool_bar)
+//    protected Toolbar mToolbar;
 
-    //获取布局文件ID
-    protected abstract int getLayoutId();
+    private TextView mTitleView;
+
 
     @Override
     public void onAttach(Activity activity) {
@@ -47,8 +49,17 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment impleme
 
         if (contentView == null) {
             contentView = inflater.inflate(getLayoutId(), container, false);
-            initView(contentView, savedInstanceState);
+            baseInit();
             ButterKnife.bind(this, contentView);
+
+            if (null == mVaryViewHelperController)
+                mVaryViewHelperController = new VaryViewHelperController(getLoadingTargetView());
+            if (null == mPresenter)
+                mPresenter = getChildPresenter();
+
+            if (null != mPresenter)
+                mPresenter.inject();
+
         } else {
             ViewGroup parent = (ViewGroup) contentView.getParent();
             if (parent != null) {
@@ -56,16 +67,32 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment impleme
             }
         }
 
-        if (null == mVaryViewHelperController)
-            mVaryViewHelperController = new VaryViewHelperController(getLoadingTargetView());
-        if (null == mPresenter)
-            mPresenter = getChildPresenter();
-
-        if (null != mPresenter)
-            mPresenter.inject();
-
         return contentView;
 
+    }
+
+    protected abstract void baseInit();
+
+    //获取布局文件ID
+    protected abstract int getLayoutId();
+
+    protected void setToolbar(boolean isNeedBackImg, String titleContent) {
+//        if (mToolbar != null) {
+//            if (isNeedBackImg) {
+//                mToolbar.setNavigationIcon(R.mipmap.ico_back);
+//                mToolbar.setNavigationOnClickListener(v -> onBackClick());
+//            }
+//            if (!TextUtils.isEmpty(titleContent)) {
+//                mTitleView = new TextView(mContext);
+//                mTitleView.setTextSize(18);
+//                mTitleView.setTextColor(Color.WHITE);
+//                mTitleView.setText(titleContent);
+//                Toolbar.LayoutParams params = new Toolbar.LayoutParams(
+//                        ViewGroup.LayoutParams.WRAP_CONTENT,
+//                        ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
+//                mToolbar.addView(mTitleView, params);
+//            }
+//        }
     }
 
     protected abstract T getChildPresenter();

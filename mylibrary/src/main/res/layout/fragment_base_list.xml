@@ -6,7 +6,6 @@
 
     <com.njupt.sniper.app.common.refresh.XRecyclerView
         android:id="@+id/recycler_view"
-        style="@style/RecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
      />

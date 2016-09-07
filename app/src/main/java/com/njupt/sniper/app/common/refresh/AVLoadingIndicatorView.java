@@ -42,39 +42,6 @@ import com.njupt.sniper.app.common.refresh.indicator.SemiCircleSpinIndicator;
 import com.njupt.sniper.app.common.refresh.indicator.SquareSpinIndicator;
 import com.njupt.sniper.app.common.refresh.indicator.TriangleSkewSpinIndicator;
 
-/**
- * Created by Jack on 2015/10/15
- *
- .BallPulse,
- .BallGridPulse,
- .BallClipRotate,
- .BallClipRotatePulse,
- .SquareSpin,
- .BallClipRotateMultiple,
- .BallPulseRise,
- .BallRotate,
- .CubeTransition,
- .BallZigZag,
- .BallZigZagDeflect,
- .BallTrianglePath,
- .BallScale,
- .LineScale,
- .LineScaleParty,
- .BallScaleMultiple,
- .BallPulseSync,
- .BallBeat,
- .LineScalePulseOut,
- .LineScalePulseOutRapid,
- .BallScaleRipple,
- .BallScaleRippleMultiple,
- .BallSpinFadeLoader,
- .LineSpinFadeLoader,
- .TriangleSkewSpin,
- .Pacman,
- .BallGridBeat,
- .SemiCircleSpin
- *
- */
 public class AVLoadingIndicatorView extends View {
     //indicators
     public static final int BallPulse=0;

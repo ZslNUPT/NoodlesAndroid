@@ -8,11 +8,10 @@
     android:paddingLeft="8dp"
     android:paddingRight="8dp">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/navi_audio_img"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:background="@drawable/bg_corner"
         android:scaleType="centerCrop"
         android:src="@mipmap/ic_launcher" />
 

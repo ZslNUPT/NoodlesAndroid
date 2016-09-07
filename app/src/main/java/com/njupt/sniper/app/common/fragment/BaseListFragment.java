@@ -1,7 +1,6 @@
 package com.njupt.sniper.app.common.fragment;
 
 
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -29,17 +28,13 @@ public abstract class BaseListFragment<E> extends BaseFragment<BaseListPresenter
 
     protected RecycleViewAdapter<E> mAdapter;
 
-    protected LinearLayoutManager layoutManager;
-
-
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_base_list;
     }
 
     @Override
-    protected void initView(View view, Bundle savedInstanceState) {
-        layoutManager = new LinearLayoutManager(getContext());
+    protected void baseInit() {
         mPresenter.requestData(getRequestParams());
     }
 

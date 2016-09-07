@@ -1,34 +1,27 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.0"
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+        incremental true
     }
 
     buildTypes {
         release {
             minifyEnabled false
+            multiDexEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-    }
-
-    compileOptions {
-        targetCompatibility 1.7
-        sourceCompatibility 1.7
-    }
-
-    packagingOptions {
-        exclude 'META-INF/ASL2.0'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/license.txt'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/notice.txt'
     }
 
 }
@@ -37,30 +30,30 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
 
-    compile 'com.android.support:appcompat-v7:23.+'
-    compile 'com.android.support:recyclerview-v7:+'
-
     compile files('libs/spring-data-rest-android-1.1.jar')
+    compile 'org.springframework.android:spring-android-rest-template:2.0.0.M1'
 
-    compile 'io.reactivex:rxjava:1.1.0'
+    compile 'com.android.support:support-v4:24.0.0'
+    compile 'com.android.support:appcompat-v7:24.0.0'
+    compile 'com.android.support:recyclerview-v7:24.0.0'
+    compile 'com.android.support:design:24.0.0'
+
     compile 'io.reactivex:rxandroid:1.1.0'
-
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
     compile 'com.squareup.retrofit2:retrofit:2.0.0-beta4'
     compile 'com.squareup.retrofit2:converter-jackson:2.0.0-beta4'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.0.0-beta4'
 
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.4.3'
-    compile 'org.springframework.android:spring-android-rest-template:2.0.0.M1'
 
     compile 'com.jakewharton:butterknife:7.0.1'
-
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'de.hdodenhof:circleimageview:2.0.0'
 
-    compile 'com.android.support:design:23.0.0'
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+    compile 'com.google.dagger:dagger:2.0.2'
+    compile 'com.google.dagger:dagger-compiler:2.0.2'
 
-
+    compile 'com.android.support:multidex:1.0.1'
 }
