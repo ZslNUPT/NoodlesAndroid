@@ -29,4 +29,9 @@ public class AudioListFragment extends BaseListFragment<AudioEntity> {
         return R.layout.item_recycler_audio;
     }
 
+    @Override
+    protected void baseInit() {
+        super.baseInit();
+        setToolbar(true, "音频列表");
+    }
 }

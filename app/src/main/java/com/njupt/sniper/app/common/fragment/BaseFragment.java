@@ -1,13 +1,18 @@
 package com.njupt.sniper.app.common.fragment;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.njupt.sniper.app.R;
 import com.njupt.sniper.app.common.BaseView;
 import com.njupt.sniper.app.common.activity.BaseActivity;
 import com.njupt.sniper.app.common.loading.VaryViewHelperController;
@@ -15,6 +20,7 @@ import com.njupt.sniper.app.common.presenter.Presenter;
 
 import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -31,8 +37,8 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment impleme
     //通用loading页error页等的控制器
     private VaryViewHelperController mVaryViewHelperController;
 
-//    @Bind(R.id.tool_bar)
-//    protected Toolbar mToolbar;
+    @Bind(R.id.toolbar)
+    protected Toolbar mToolbar;
 
     private TextView mTitleView;
 
@@ -49,7 +55,6 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment impleme
 
         if (contentView == null) {
             contentView = inflater.inflate(getLayoutId(), container, false);
-            baseInit();
             ButterKnife.bind(this, contentView);
 
             if (null == mVaryViewHelperController)
@@ -59,6 +64,8 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment impleme
 
             if (null != mPresenter)
                 mPresenter.inject();
+
+            baseInit();
 
         } else {
             ViewGroup parent = (ViewGroup) contentView.getParent();
@@ -77,22 +84,26 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment impleme
     protected abstract int getLayoutId();
 
     protected void setToolbar(boolean isNeedBackImg, String titleContent) {
-//        if (mToolbar != null) {
-//            if (isNeedBackImg) {
-//                mToolbar.setNavigationIcon(R.mipmap.ico_back);
-//                mToolbar.setNavigationOnClickListener(v -> onBackClick());
-//            }
-//            if (!TextUtils.isEmpty(titleContent)) {
-//                mTitleView = new TextView(mContext);
-//                mTitleView.setTextSize(18);
-//                mTitleView.setTextColor(Color.WHITE);
-//                mTitleView.setText(titleContent);
-//                Toolbar.LayoutParams params = new Toolbar.LayoutParams(
-//                        ViewGroup.LayoutParams.WRAP_CONTENT,
-//                        ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
-//                mToolbar.addView(mTitleView, params);
-//            }
-//        }
+        if (mToolbar != null) {
+            if (isNeedBackImg) {
+                mToolbar.setNavigationIcon(R.mipmap.ico_back);
+                mToolbar.setNavigationOnClickListener(v -> onBackClick());
+            }
+            if (!TextUtils.isEmpty(titleContent)) {
+                mTitleView = new TextView(mActivity);
+                mTitleView.setTextSize(18);
+                mTitleView.setTextColor(Color.WHITE);
+                mTitleView.setText(titleContent);
+                Toolbar.LayoutParams params = new Toolbar.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
+                mToolbar.addView(mTitleView, params);
+            }
+        }
+    }
+
+    protected void onBackClick() {
+
     }
 
     protected abstract T getChildPresenter();

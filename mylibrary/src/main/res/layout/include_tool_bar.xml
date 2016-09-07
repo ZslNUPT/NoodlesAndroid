@@ -1,38 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tool_bar"
+    android:id="@+id/toolbar"
     android:layout_width="match_parent"
-    android:layout_height="56dp"
-    android:background="@color/dark_blue">
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/toolbar_left_action"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <com.njupt.sniper.app.common.customView.IconTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/icon_left_arrow"
-                android:textColor="@color/normal_white"
-                android:textSize="28dp" />
-
-            <TextView
-                android:id="@+id/toolbar_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:text="面经攻略"
-                android:textColor="@color/normal_white"
-                android:textSize="20dp" />
-        </LinearLayout>
-
-    </RelativeLayout>
-
-</android.support.v7.widget.Toolbar>
+    android:layout_height="50dp"
+    android:background="@color/dark_blue" />

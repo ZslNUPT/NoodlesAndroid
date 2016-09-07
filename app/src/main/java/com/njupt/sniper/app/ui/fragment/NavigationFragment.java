@@ -22,7 +22,7 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
 
     @Override
     protected void baseInit() {
-
+        setToolbar(true, "首页");
     }
 
     @Override
