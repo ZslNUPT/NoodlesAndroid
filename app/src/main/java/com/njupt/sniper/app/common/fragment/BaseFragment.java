@@ -48,12 +48,14 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment impleme
         if (contentView == null) {
             contentView = inflater.inflate(getLayoutId(), container, false);
             initView(contentView, savedInstanceState);
+            ButterKnife.bind(this, contentView);
         } else {
             ViewGroup parent = (ViewGroup) contentView.getParent();
             if (parent != null) {
                 parent.removeView(contentView);
             }
         }
+
         if (null == mVaryViewHelperController)
             mVaryViewHelperController = new VaryViewHelperController(getLoadingTargetView());
         if (null == mPresenter)
@@ -62,15 +64,15 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment impleme
         if (null != mPresenter)
             mPresenter.inject();
 
-        ButterKnife.bind(this, contentView);
-
         return contentView;
 
     }
 
     protected abstract T getChildPresenter();
 
-    protected abstract View getLoadingTargetView();
+    protected  View getLoadingTargetView(){
+        return contentView;
+    }
 
     @Override
     public void setMenuVisibility(boolean menuVisible) {
@@ -123,7 +125,7 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment impleme
     }
 
     @Override
-    public void refreshView() {
+    public void hideLoading() {
         if (mVaryViewHelperController == null) {
             throw new IllegalStateException("no ViewHelperController");
         }

@@ -1,6 +1,7 @@
-package com.njupt.sniper.app.dagger;
+package com.njupt.sniper.app.di.module;
 
 import com.njupt.sniper.app.MyApplication;
+import com.njupt.sniper.app.di.scope.AppScope;
 
 import dagger.Module;
 import dagger.Provides;

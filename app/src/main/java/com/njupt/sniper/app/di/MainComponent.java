@@ -1,6 +1,11 @@
-package com.njupt.sniper.app.dagger;
+package com.njupt.sniper.app.di;
 
 import com.njupt.sniper.app.MyApplication;
+import com.njupt.sniper.app.di.module.AccountModule;
+import com.njupt.sniper.app.di.module.AppModule;
+import com.njupt.sniper.app.di.module.HttpMethodsModule;
+import com.njupt.sniper.app.di.module.ServiceModule;
+import com.njupt.sniper.app.di.scope.AppScope;
 
 import dagger.Component;
 

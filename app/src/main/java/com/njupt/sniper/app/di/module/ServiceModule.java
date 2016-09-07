@@ -1,9 +1,11 @@
-package com.njupt.sniper.app.dagger;
+package com.njupt.sniper.app.di.module;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
+import com.njupt.sniper.app.di.scope.AppScope;
+import com.njupt.sniper.app.model.service.AudioService;
 import com.njupt.sniper.app.model.service.NavigationService;
 import com.njupt.sniper.app.model.service.OAuthService;
 import com.njupt.sniper.app.utils.AuthorityUtils;
@@ -82,6 +84,12 @@ public class ServiceModule {
     @AppScope
     protected NavigationService navigationService(Retrofit retrofit) {
         return retrofit.create(NavigationService.class);
+    }
+
+    @Provides
+    @AppScope
+    protected AudioService audioService(Retrofit retrofit) {
+        return retrofit.create(AudioService.class);
     }
 
     /**

@@ -13,10 +13,9 @@ public interface BaseView {
 
     void showEmptyView(String msg);
 
-    void refreshView();
+    void hideLoading();
 
     void showNetError();
-
 
     void hasNoMoreData();
 

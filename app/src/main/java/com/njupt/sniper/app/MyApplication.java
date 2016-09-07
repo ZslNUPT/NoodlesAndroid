@@ -2,7 +2,7 @@ package com.njupt.sniper.app;
 
 import android.app.Application;
 
-import com.njupt.sniper.app.dagger.MainComponent;
+import com.njupt.sniper.app.di.MainComponent;
 import com.njupt.sniper.mylibrary.utils.ToastUtils;
 
 /**

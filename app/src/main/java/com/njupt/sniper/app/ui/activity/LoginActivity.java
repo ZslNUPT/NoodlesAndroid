@@ -7,7 +7,7 @@ import android.widget.EditText;
 import com.njupt.sniper.app.MyApplication;
 import com.njupt.sniper.app.R;
 import com.njupt.sniper.app.common.activity.BaseActivity;
-import com.njupt.sniper.app.dagger.AccountModule;
+import com.njupt.sniper.app.di.module.AccountModule;
 import com.njupt.sniper.app.model.entity.OAuthTokenEntity;
 import com.njupt.sniper.app.model.service.OAuthService;
 import com.njupt.sniper.app.model.subscribers.ProgressSubscriber;

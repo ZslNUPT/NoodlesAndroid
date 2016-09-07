@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.njupt.sniper.app.R;
-import com.njupt.sniper.app.common.customView.AutoLoadImageView;
 import com.njupt.sniper.app.common.fragment.BaseFragment;
 import com.njupt.sniper.app.ui.presenter.NavigationPresenter;
 import com.njupt.sniper.app.ui.viewInterface.NavigationView;
@@ -21,9 +20,6 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
 
     @Bind(R.id.navigation_result)
     TextView result;
-
-    @Bind(R.id.iv_cover)
-    AutoLoadImageView iv_cover;
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
@@ -42,9 +38,8 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
 
     @Override
     protected View getLoadingTargetView() {
-        return iv_cover;
+        return result;
     }
-
 
     @OnClick(R.id.navigation_click)
     public void onClick() {

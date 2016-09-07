@@ -30,16 +30,16 @@ public class ProgressSubscriber<T> extends Subscriber<T> implements ProgressCanc
     }
 
     private void showProgressDialog(){
-        if (mProgressDialogHandler != null) {
-            mProgressDialogHandler.obtainMessage(ProgressDialogHandler.SHOW_PROGRESS_DIALOG).sendToTarget();
-        }
+//        if (mProgressDialogHandler != null) {
+//            mProgressDialogHandler.obtainMessage(ProgressDialogHandler.SHOW_PROGRESS_DIALOG).sendToTarget();
+//        }
     }
 
     private void dismissProgressDialog(){
-        if (mProgressDialogHandler != null) {
-            mProgressDialogHandler.obtainMessage(ProgressDialogHandler.DISMISS_PROGRESS_DIALOG).sendToTarget();
-            mProgressDialogHandler = null;
-        }
+//        if (mProgressDialogHandler != null) {
+//            mProgressDialogHandler.obtainMessage(ProgressDialogHandler.DISMISS_PROGRESS_DIALOG).sendToTarget();
+//            mProgressDialogHandler = null;
+//        }
     }
 
     /**

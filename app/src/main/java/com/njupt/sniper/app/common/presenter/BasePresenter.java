@@ -4,7 +4,7 @@ package com.njupt.sniper.app.common.presenter;
 import android.app.Activity;
 
 import com.njupt.sniper.app.MyApplication;
-import com.njupt.sniper.app.dagger.HttpMethodsModule;
+import com.njupt.sniper.app.di.module.HttpMethodsModule;
 
 import javax.inject.Inject;
 

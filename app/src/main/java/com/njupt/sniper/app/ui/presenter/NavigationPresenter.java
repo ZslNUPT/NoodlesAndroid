@@ -24,7 +24,7 @@ public class NavigationPresenter extends BasePresenter {
 
     public NavigationPresenter(NavigationView view, Activity activity) {
         mView = view;
-        mActivity=activity;
+        mActivity = activity;
     }
 
     @Override
@@ -34,12 +34,14 @@ public class NavigationPresenter extends BasePresenter {
 
     @Override
     public void requestData(Object... o) {
+        mView.showLoading();
+
         baseHttpMethods.toSubscribe(navigationService.getStatics(), new ProgressSubscriber<>(new SimpleSubscriberOnNextListener<StaticsEntity>() {
             @Override
             public void onNext(StaticsEntity staticsEntity) {
 //                mView.setResult(staticsEntity.resume_rank.share_content);
                 mView.showNetError();
-
+//                mView.showEmptyView("d");
             }
 
             @Override
@@ -47,6 +49,6 @@ public class NavigationPresenter extends BasePresenter {
                 super.onError(e);
                 mView.showNetError();
             }
-        },mActivity));
+        }, mActivity));
     }
 }

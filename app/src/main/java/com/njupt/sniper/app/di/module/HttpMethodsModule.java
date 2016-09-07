@@ -1,4 +1,4 @@
-package com.njupt.sniper.app.dagger;
+package com.njupt.sniper.app.di.module;
 
 
 import android.content.Intent;

@@ -5,8 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.njupt.sniper.app.MyApplication;
-import com.njupt.sniper.app.dagger.ActivityModule;
-import com.njupt.sniper.app.dagger.HttpMethodsModule;
+import com.njupt.sniper.app.di.module.HttpMethodsModule;
 
 import javax.inject.Inject;
 
@@ -28,7 +27,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getLayoutId());
         ButterKnife.bind(this);
         MyApplication.getMainComponent().inject(this); // 应用注入
-
     }
 
     public abstract int getLayoutId();
@@ -37,12 +35,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         ButterKnife.unbind(this);
-    }
-
-    //配合Dagger2使用 返回当前Activity的ActivityModule对象
-    // ActivityModule生命周期与activity是绑定的
-    protected ActivityModule getActivityModule() {
-        return new ActivityModule(this);
     }
 
 }
