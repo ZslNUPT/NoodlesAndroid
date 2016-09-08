@@ -43,7 +43,7 @@ public abstract class BaseListFragment<E> extends BaseFragment<BaseListPresenter
 
     @Override
     protected void baseInit() {
-        mPresenter.requestData(getRequestParams());
+        mPresenter.executeTask(getRequestParams());
     }
 
     @Override
@@ -114,13 +114,13 @@ public abstract class BaseListFragment<E> extends BaseFragment<BaseListPresenter
     @Override
     public void onRefresh() {
         PAGE = 1;
-        mPresenter.requestData(getRequestParams(), BaseListPresenter.RequestMode.REFRESH);
+        mPresenter.executeTask(getRequestParams(), BaseListPresenter.RequestMode.REFRESH);
     }
 
     @Override
     public void onLoadMore() {
         PAGE = PAGE + 1;
-        mPresenter.requestData(getRequestParams(), BasePresenter.RequestMode.LOAD_MORE);
+        mPresenter.executeTask(getRequestParams(), BasePresenter.RequestMode.LOAD_MORE);
     }
 
     @Override

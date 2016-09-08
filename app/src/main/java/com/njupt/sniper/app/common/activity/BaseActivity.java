@@ -5,9 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 import com.njupt.sniper.app.MyApplication;
-import com.njupt.sniper.app.di.module.HttpMethodsModule;
-
-import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 
@@ -16,8 +13,6 @@ import butterknife.ButterKnife;
  * date：2016/8/25
  */
 public abstract class BaseActivity extends AppCompatActivity {
-    @Inject
-    public HttpMethodsModule baseHttpMethods;
 
     protected String TAG = this.getClass().getSimpleName();
 
@@ -26,7 +21,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
-        MyApplication.getMainComponent().inject(this); // 应用注入
     }
 
     public abstract int getLayoutId();

@@ -29,13 +29,17 @@ public abstract class BasePresenter<T> extends Presenter {
 
     protected abstract Observable<T> getObservable(Map<String, String> params);
 
-    public void requestData(Map<String, String> params) {
-        mView.showLoading();
-
-        requestData(params, RequestMode.FIRST);
+    public void executeTask() {
+        executeTask(null, RequestMode.FIRST);
     }
 
-    public void requestData(Map<String, String> params, RequestMode mode) {
+    public void executeTask(Map<String, String> params) {
+        mView.showLoading();
+
+        executeTask(params, RequestMode.FIRST);
+    }
+
+    public void executeTask(Map<String, String> params, RequestMode mode) {
         if (null == getObservable(params)) {
             throw new IllegalArgumentException("no Observable");
         }

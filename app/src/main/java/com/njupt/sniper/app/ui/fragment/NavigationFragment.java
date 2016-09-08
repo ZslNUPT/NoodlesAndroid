@@ -42,7 +42,7 @@ public class NavigationFragment extends BaseFragment<NavigationPresenter> implem
 
     @OnClick(R.id.navigation_click)
     public void onClick() {
-        mPresenter.requestData(getRequestParams());
+        mPresenter.executeTask();
     }
 
     @Override

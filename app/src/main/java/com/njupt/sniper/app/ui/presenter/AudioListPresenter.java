@@ -34,7 +34,6 @@ public class AudioListPresenter extends BaseListPresenter<AudioEntity> {
 
     @Override
     protected Observable<List<AudioEntity>> getObservable(Map<String, String> params) {
-//        return baseHttpMethods.resourcesMapToList(audioService.getAudios());
         return baseHttpMethods.pagedResourcesMapToList(audioService.getPagedAudioList(Integer.parseInt(params.get("pageNum")),10));
     }
 

@@ -177,7 +177,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
         }
         mVaryViewHelperController.showNetworkError(v -> {
             showLoading();
-            mPresenter.requestData(getRequestParams());
+            mPresenter.executeTask(getRequestParams());
         });
     }
 
