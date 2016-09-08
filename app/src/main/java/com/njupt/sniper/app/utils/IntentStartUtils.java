@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.njupt.sniper.app.ui.activity.HomeActivity;
+
 /**
  * author：Zsl
  * date：2016/9/6
@@ -83,5 +85,9 @@ public class IntentStartUtils {
             intent.putExtras(bundle);
         }
         activity.startActivityForResult(intent, requestCode);
+    }
+
+    public static void readyGoThenKillHomeActivity(Activity activity){
+        readyGoThenKill(activity, HomeActivity.class);
     }
 }

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import com.njupt.sniper.app.R;
@@ -27,7 +26,7 @@ public abstract class MultiFragmentActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setActionBar();
+        getSupportActionBar().hide();
 
         initFragments();
 
@@ -36,17 +35,6 @@ public abstract class MultiFragmentActivity extends BaseActivity {
             showFragmentInPosition(0);
 
     }
-
-    protected void setActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle(getActivityTitle());
-    }
-
-    protected String getActivityTitle() {
-        return getResources().getString(R.string.back);
-    }
-
 
     /**
      * addFragment();
@@ -57,8 +45,7 @@ public abstract class MultiFragmentActivity extends BaseActivity {
         return R.id.fragment_container;
     }
 
-
-    public  int getLayoutId(){
+    public int getLayoutId(){
         return R.layout.activity_multi_fragment;
     };
 

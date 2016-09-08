@@ -1,4 +1,4 @@
-package com.njupt.sniper.app.ui.activity;
+package com.njupt.sniper.app.common.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.TabHost;
 
 import com.njupt.sniper.mylibrary.R;
-import com.njupt.sniper.app.common.activity.BaseActivity;
 
 import butterknife.Bind;
 

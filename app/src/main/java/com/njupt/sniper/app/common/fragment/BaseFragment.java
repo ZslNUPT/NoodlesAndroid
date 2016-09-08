@@ -3,6 +3,7 @@ package com.njupt.sniper.app.common.fragment;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -38,6 +39,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     //通用loading页error页等的控制器
     private VaryViewHelperController mVaryViewHelperController;
 
+    @Nullable
     @Bind(R.id.toolbar)
     protected Toolbar mToolbar;
 

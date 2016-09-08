@@ -9,4 +9,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SplashStyle" parent="@style/AppTheme">
+        <item name="android:windowBackground">@mipmap/bg_splash</item>
+    </style>
+
 </resources>

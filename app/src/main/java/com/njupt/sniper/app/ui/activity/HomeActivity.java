@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.njupt.sniper.app.R;
+import com.njupt.sniper.app.common.activity.BottomTabActivity;
 import com.njupt.sniper.app.ui.fragment.AudioListFragment;
 import com.njupt.sniper.app.ui.fragment.AudioListFragment2;
 import com.njupt.sniper.app.ui.fragment.NavigationFragment;

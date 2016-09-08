@@ -12,7 +12,12 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.HomeActivity">
+        <activity android:name=".ui.activity.SplashActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashStyle"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,6 +26,8 @@
         </activity>
 
         <activity android:name=".ui.activity.LoginActivity" />
+
+        <activity android:name=".ui.activity.HomeActivity"/>
     </application>
 
 </manifest>

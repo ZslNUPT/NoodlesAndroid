@@ -5,6 +5,7 @@ import com.njupt.sniper.app.common.presenter.Presenter;
 import com.njupt.sniper.app.ui.presenter.AudioListPresenter;
 import com.njupt.sniper.app.ui.presenter.LoginPresenter;
 import com.njupt.sniper.app.ui.presenter.NavigationPresenter;
+import com.njupt.sniper.app.ui.presenter.SplashPresenter;
 
 /**
  * author：Zsl
@@ -21,5 +22,7 @@ public interface BaseComponent {
     void inject(AudioListPresenter audioListPresenter);
 
     void inject(LoginPresenter loginPresenter);
+
+    void inject(SplashPresenter splashPresenter);
 
 }
