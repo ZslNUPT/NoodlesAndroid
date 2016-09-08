@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt' //gradle android apt插件，必须配置，在build自动根据dagger的配置生成代码片段
 apply plugin: 'me.tatarka.retrolambda'
+//apply plugin: 'org.greenrobot.greendao'
 
 
 android {

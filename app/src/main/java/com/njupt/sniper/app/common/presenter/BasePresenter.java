@@ -86,7 +86,7 @@ public abstract class BasePresenter<T> extends Presenter {
     }
 
     public void destroy() {
-
+        mView = null;
     }
 
 }
