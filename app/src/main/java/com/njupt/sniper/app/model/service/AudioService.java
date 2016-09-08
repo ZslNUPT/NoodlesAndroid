@@ -19,5 +19,5 @@ public interface AudioService{
     Observable<Resources<AudioEntity>> getAudios();
 
     @GET("api/audios?projection=indexAudio")
-    Observable<PagedResources<AudioEntity>> getPagedAudioList(@Query("page")  int page, @Query("size")  int size);
+    Observable<PagedResources<AudioEntity>> getPagedAudioList(@Query("page") int page, @Query("size")  int size);
 }

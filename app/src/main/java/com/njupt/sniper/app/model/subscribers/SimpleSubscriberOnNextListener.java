@@ -20,4 +20,9 @@ public abstract class SimpleSubscriberOnNextListener<T> implements SubscriberOnN
            // ToastUtils.getInstance().showToast(e.getMessage());
         }
     }
+
+    @Override
+    public void onFinish() {
+
+    }
 }

@@ -11,11 +11,11 @@ import java.util.List;
 public interface BaseView {
     void showLoading();
 
-    void showEmptyView(String msg);
-
     void hideLoading();
 
     void showNetError();
+
+    void showEmptyView(String msg);
 
     void hasNoMoreData();
 
@@ -24,4 +24,5 @@ public interface BaseView {
     void showRefreshFinish(List score);
 
     void showToastError();
+
 }

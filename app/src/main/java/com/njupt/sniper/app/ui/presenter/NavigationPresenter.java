@@ -6,18 +6,19 @@ import com.njupt.sniper.app.MyApplication;
 import com.njupt.sniper.app.common.presenter.BasePresenter;
 import com.njupt.sniper.app.model.entity.StaticsEntity;
 import com.njupt.sniper.app.model.service.NavigationService;
-import com.njupt.sniper.app.model.subscribers.ProgressSubscriber;
-import com.njupt.sniper.app.model.subscribers.SimpleSubscriberOnNextListener;
 import com.njupt.sniper.app.ui.viewInterface.NavigationView;
 
+import java.util.Map;
+
 import javax.inject.Inject;
+
+import rx.Observable;
 
 /**
  * author：Zsl
  * date：2016/9/6
  */
-public class NavigationPresenter extends BasePresenter {
-    protected NavigationView mView;
+public class NavigationPresenter extends BasePresenter<StaticsEntity> {
 
     @Inject
     NavigationService navigationService;
@@ -33,22 +34,12 @@ public class NavigationPresenter extends BasePresenter {
     }
 
     @Override
-    public void requestData(Object... o) {
-        mView.showLoading();
+    protected Observable getObservable(Map params) {
+       return navigationService.getStatics();
+    }
 
-        baseHttpMethods.toSubscribe(navigationService.getStatics(), new ProgressSubscriber<>(new SimpleSubscriberOnNextListener<StaticsEntity>() {
-            @Override
-            public void onNext(StaticsEntity staticsEntity) {
-//                mView.setResult(staticsEntity.resume_rank.share_content);
-                mView.showNetError();
-//                mView.showEmptyView("d");
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                super.onError(e);
-                mView.showNetError();
-            }
-        }, mActivity));
+    @Override
+    protected void onAllSuccess(StaticsEntity staticsEntity) {
+        ((NavigationView)mView).setResult(staticsEntity.resume_rank.share_content);
     }
 }

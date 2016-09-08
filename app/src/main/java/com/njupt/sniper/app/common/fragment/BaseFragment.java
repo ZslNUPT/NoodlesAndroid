@@ -13,12 +13,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.njupt.sniper.app.R;
-import com.njupt.sniper.app.common.view.BaseView;
 import com.njupt.sniper.app.common.activity.BaseActivity;
 import com.njupt.sniper.app.common.customView.loading.VaryViewHelperController;
-import com.njupt.sniper.app.common.presenter.Presenter;
+import com.njupt.sniper.app.common.presenter.BasePresenter;
+import com.njupt.sniper.app.common.view.BaseView;
 
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -27,7 +28,7 @@ import butterknife.ButterKnife;
  * author：Zsl
  * date：2016/8/31
  */
-public abstract class BaseFragment<T extends Presenter> extends Fragment implements BaseView {
+public abstract class BaseFragment<T extends BasePresenter> extends Fragment implements BaseView {
 
     //与Fragment绑定的activity对象
     protected BaseActivity mActivity;
@@ -41,7 +42,6 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment impleme
     protected Toolbar mToolbar;
 
     private TextView mTitleView;
-
 
     @Override
     public void onAttach(Activity activity) {
@@ -181,6 +181,10 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment impleme
         });
     }
 
+    protected Map<String, String> getRequestParams() {
+        return null;
+    }
+
     @Override
     public void hasNoMoreData() {
 
@@ -199,10 +203,6 @@ public abstract class BaseFragment<T extends Presenter> extends Fragment impleme
     @Override
     public void showToastError() {
 
-    }
-
-    protected String getRequestParams() {
-        return null;
     }
 
     @Override

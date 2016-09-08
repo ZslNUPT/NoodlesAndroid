@@ -1,17 +1,21 @@
 package com.njupt.sniper.app.common.presenter;
 
+import com.njupt.sniper.app.MyApplication;
+import com.njupt.sniper.app.di.module.HttpMethodsModule;
+
+import javax.inject.Inject;
+
 /**
- * Created by Arron on 16/7/26.
+ * author：Zsl
+ * date：2016/9/8
  */
-public interface Presenter {
-    void inject();
+public class Presenter {
+    //dagger2好像无法注入泛型类
 
-    void resume();
+    @Inject
+    public HttpMethodsModule baseHttpMethods;
 
-    void pause();
-
-    void destroy();
-
-    void requestData(Object... o);
-
+    public void inject() {
+        MyApplication.getMainComponent().inject(this);
+    }
 }

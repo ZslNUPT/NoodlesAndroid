@@ -34,4 +34,5 @@ public class AudioListFragment extends BaseListFragment<AudioEntity> {
         super.baseInit();
         setToolbar(true, "音频列表");
     }
+
 }

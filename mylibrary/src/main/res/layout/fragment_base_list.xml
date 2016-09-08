@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/include_tool_bar" />
+    <include
+        layout="@layout/include_tool_bar" />
 
     <com.njupt.sniper.app.common.customView.refresh.XRecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
-     />
+        android:layout_below="@+id/toolbar" />
 
 </RelativeLayout>

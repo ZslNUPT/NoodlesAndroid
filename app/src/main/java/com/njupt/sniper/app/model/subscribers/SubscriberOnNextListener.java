@@ -7,4 +7,5 @@ package com.njupt.sniper.app.model.subscribers;
 public interface SubscriberOnNextListener<T> {
     void onNext(T t);
     void onError(Throwable e);
+    void onFinish();
 }
